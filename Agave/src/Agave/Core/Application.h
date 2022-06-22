@@ -1,20 +1,40 @@
+///=============================================================================
+/// Application.h
+/// Agave/Core
+///
+/// Copyright (c) 2022 Joshua Palmer. All rights reserved.
+///
+/// Application class representing client application.
+///=============================================================================
+
 #ifndef AGAVE_APPLICATION_H
 #define AGAVE_APPLICATION_H
 
-#include "Agave/Core/Core.h"
+///=============================================================================
+/// Includes
+///=============================================================================
+#include "Agave/Core/Base.h"
 
 namespace Agave {
-
+    ///=========================================================================
+    ///=========================================================================
     class AGAVE_API Application
     {
     public:
+        ///=====================================================================
+        /// Public Methods
+        ///=====================================================================
         Application();
         virtual ~Application();
 
+        ///=====================================================================
+        /// Public Methods
+        ///=====================================================================
         void Run();
     };
 
-    Application* CreateApplication();    
+    // Defined by client
+    Application* CreateApplication();
 } 
 
 #endif // #ifndef AGAVE_APPLICATION_H

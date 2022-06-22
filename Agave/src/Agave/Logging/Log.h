@@ -1,9 +1,21 @@
+///=============================================================================
+/// Log.h
+/// Agave/Logging
+///
+/// Copyright (c) 2022 Joshua Palmer. All rights reserved.
+///
+/// Logging wrapper for spdlog library
+///=============================================================================
+
 #ifndef AGAVE_LOG_H
 #define AGAVE_LOG_H
 
-#include <memory>
+///=============================================================================
+/// Includes
+///=============================================================================
+#include "Agave/Core/Base.h"
 #include <spdlog/spdlog.h>
-#include "Agave/Core/Core.h"
+#include <memory>
 
 namespace Agave {
 
@@ -21,13 +33,17 @@ namespace Agave {
     };
 }
 
-// Core log macros
+///=============================================================================
+/// Core Log Macros
+///=============================================================================
 #define AgCoreLogTrace(...) ::Agave::Log::GetCoreLogger()->trace(__VA_ARGS__);
 #define AgCoreLogInfo(...) ::Agave::Log::GetCoreLogger()->info(__VA_ARGS__);
 #define AgCoreLogWarn(...) ::Agave::Log::GetCoreLogger()->warn(__VA_ARGS__);
 #define AgCoreLogError(...) ::Agave::Log::GetCoreLogger()->error(__VA_ARGS__);
 
-// Client log macros
+///=============================================================================
+/// Client Log Macros
+///=============================================================================
 #define AgLogTrace(...) ::Agave::Log::GetClientLogger()->trace(__VA_ARGS__);
 #define AgLogInfo(...) ::Agave::Log::GetClientLogger()->info(__VA_ARGS__);
 #define AgLogWarn(...) ::Agave::Log::GetClientLogger()->warn(__VA_ARGS__);

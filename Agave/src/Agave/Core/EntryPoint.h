@@ -1,13 +1,28 @@
+///=============================================================================
+/// EntryPoint.h
+/// Agave/Core
+///
+/// Copyright (c) 2022 Joshua Palmer. All rights reserved.
+///
+/// Entry point for client application.
+///=============================================================================
+
 #ifndef AGAVE_ENTRY_POINT_H
 #define AGAVE_ENTRY_POINT_H
 
+///=============================================================================
+/// Includes
+///=============================================================================
 #include "Agave/Core/Application.h"
 #include "Agave/Logging/Log.h"
 
 #ifdef AGAVE_PLATFORM_WINDOWS
 
+// Defined by client
 extern Agave::Application* Agave::CreateApplication();
 
+///=============================================================================
+///=============================================================================
 int main(int argc, char** argv)
 {
     Agave::Log::Init();

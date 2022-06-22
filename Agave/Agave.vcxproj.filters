@@ -12,7 +12,7 @@
     <ClInclude Include="src\Agave\Core\Application.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Agave\Core\Core.h">
+    <ClInclude Include="src\Agave\Core\Base.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Agave\Core\EntryPoint.h">

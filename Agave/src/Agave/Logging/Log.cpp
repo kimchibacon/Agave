@@ -1,3 +1,15 @@
+///=============================================================================
+/// Log.cpp
+/// Agave/Logging
+///
+/// Copyright (c) 2022 Joshua Palmer. All rights reserved.
+///
+/// Logging wrapper for spdlog library
+///=============================================================================
+
+///=============================================================================
+/// Includes
+///=============================================================================
 #include "Agave/Logging/Log.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
 
@@ -6,6 +18,8 @@ namespace Agave {
     std::shared_ptr<spdlog::logger> Log::ms_coreLogger = nullptr;
     std::shared_ptr<spdlog::logger> Log::ms_clientLogger = nullptr;
 
+    ///=========================================================================
+    ///=========================================================================
     void Log::Init()
     {
         spdlog::set_pattern("%^[%T] %n: %v%$");
