@@ -1,20 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Core">
-      <UniqueIdentifier>{255f30a3-1c2a-4ddb-a067-99b52ced33b3}</UniqueIdentifier>
+      <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Logging">
-      <UniqueIdentifier>{debb7cc4-d817-4962-b076-d8137f12167f}</UniqueIdentifier>
+      <UniqueIdentifier>{AC6878E8-1848-F783-2160-825A8DBE5DE5}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Agave\Core\Application.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Agave\Logging\Log.cpp">
-      <Filter>Logging</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Agave\Core\Application.h">
@@ -29,5 +21,13 @@
     <ClInclude Include="src\Agave\Logging\Log.h">
       <Filter>Logging</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Agave\Core\Application.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Agave\Logging\Log.cpp">
+      <Filter>Logging</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
