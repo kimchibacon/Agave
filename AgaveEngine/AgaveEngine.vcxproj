@@ -12,11 +12,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Agave\Core\Application.cpp" />
+    <ClCompile Include="src\Agave\Logging\Log.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Agave\Core\Application.h" />
     <ClInclude Include="src\Agave\Core\Core.h" />
     <ClInclude Include="src\Agave\Core\EntryPoint.h" />
+    <ClInclude Include="src\Agave\Logging\Log.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -70,6 +72,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);AGAVE_PLATFORM_WINDOWS;AGAVE_BUILD_DLL</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)AgaveEngine\vendor\spdlog\include;$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -84,6 +87,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);AGAVE_PLATFORM_WINDOWS;AGAVE_BUILD_DLL</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)AgaveEngine\vendor\spdlog\include;$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -1,0 +1,3 @@
+[submodule "AgaveEngine/vendor/spdlog"]
+	path = AgaveEngine/vendor/spdlog
+	url = https://github.com/gabime/spdlog

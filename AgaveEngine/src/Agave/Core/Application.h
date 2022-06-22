@@ -1,7 +1,7 @@
 #ifndef AGAVE_APPLICATION_H
 #define AGAVE_APPLICATION_H
 
-#include "Core.h"
+#include "Agave/Core/Core.h"
 
 namespace Agave {
 
