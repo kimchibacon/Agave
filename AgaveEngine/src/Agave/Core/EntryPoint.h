@@ -14,6 +14,6 @@ int main(int argc, char** argv)
     delete pApp;
 }
 
-#endif
+#endif // #ifdef AGAVE_PLATFORM_WINDOWS
 
-#endif // #define AGAVE_ENTRY_POINT_H
+#endif // #ifndef AGAVE_ENTRY_POINT_H

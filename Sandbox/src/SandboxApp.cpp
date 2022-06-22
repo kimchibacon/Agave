@@ -1,4 +1,5 @@
-#include <Agave.h>
+#include <Agave/Core/EntryPoint.h>
+#include <Agave/Core/Application.h>
 
 class Sandbox : public Agave::Application
 {

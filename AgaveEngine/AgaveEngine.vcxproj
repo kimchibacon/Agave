@@ -10,6 +10,14 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Agave\Core\Application.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Agave\Core\Application.h" />
+    <ClInclude Include="src\Agave\Core\Core.h" />
+    <ClInclude Include="src\Agave\Core\EntryPoint.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -84,15 +92,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="src\Agave.h" />
-    <ClInclude Include="src\Agave\Core\Application.h" />
-    <ClInclude Include="src\Agave\Core\Core.h" />
-    <ClInclude Include="src\Agave\Core\EntryPoint.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Agave\Core\Application.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

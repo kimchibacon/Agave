@@ -17,4 +17,4 @@ namespace Agave {
     Application* CreateApplication();    
 } 
 
-#endif // #define AGAVE_APPLICATION_H
+#endif // #ifndef AGAVE_APPLICATION_H
