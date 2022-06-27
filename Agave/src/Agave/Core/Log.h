@@ -24,8 +24,8 @@ namespace Agave {
     public:
         static void Init();
 
-        inline static std::shared_ptr<spdlog::logger>& GetCoreLogger() { return ms_coreLogger; }
-        inline static std::shared_ptr<spdlog::logger>& GetClientLogger() { return ms_clientLogger; }
+        static std::shared_ptr<spdlog::logger>& GetCoreLogger() { return ms_coreLogger; }
+        static std::shared_ptr<spdlog::logger>& GetClientLogger() { return ms_clientLogger; }
 
     private:
         static std::shared_ptr<spdlog::logger> ms_coreLogger;
