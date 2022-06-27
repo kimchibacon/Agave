@@ -4,11 +4,14 @@
     <Filter Include="Core">
       <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Logging">
-      <UniqueIdentifier>{AC6878E8-1848-F783-2160-825A8DBE5DE5}</UniqueIdentifier>
+    <Filter Include="Events">
+      <UniqueIdentifier>{3A8963B1-262B-8E87-0FE6-A1DBFB2615D8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Agave\Core\AgaveTypes.h">
+      <Filter>Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Agave\Core\Application.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -18,21 +21,28 @@
     <ClInclude Include="src\Agave\Core\EntryPoint.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Agave\Logging\Log.h">
-      <Filter>Logging</Filter>
+    <ClInclude Include="src\Agave\Core\Log.h">
+      <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Agave\Events\Event.h" />
-    <ClInclude Include="src\Agave\Events\ApplicationEvent.h" />
-    <ClInclude Include="src\Agave\Core\AgaveTypes.h" />
-    <ClInclude Include="src\Agave\Events\KeyEvent.h" />
-    <ClInclude Include="src\Agave\Events\MouseEvent.h" />
+    <ClInclude Include="src\Agave\Events\ApplicationEvent.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Agave\Events\Event.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Agave\Events\KeyEvent.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Agave\Events\MouseEvent.h">
+      <Filter>Events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Agave\Core\Application.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Agave\Logging\Log.cpp">
-      <Filter>Logging</Filter>
+    <ClCompile Include="src\Agave\Core\Log.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

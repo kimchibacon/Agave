@@ -144,15 +144,15 @@
     <ClInclude Include="src\Agave\Core\Application.h" />
     <ClInclude Include="src\Agave\Core\Base.h" />
     <ClInclude Include="src\Agave\Core\EntryPoint.h" />
+    <ClInclude Include="src\Agave\Core\Log.h" />
     <ClInclude Include="src\Agave\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Agave\Events\Event.h" />
     <ClInclude Include="src\Agave\Events\KeyEvent.h" />
     <ClInclude Include="src\Agave\Events\MouseEvent.h" />
-    <ClInclude Include="src\Agave\Logging\Log.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Agave\Core\Application.cpp" />
-    <ClCompile Include="src\Agave\Logging\Log.cpp" />
+    <ClCompile Include="src\Agave\Core\Log.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

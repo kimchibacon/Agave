@@ -10,7 +10,7 @@
 ///=============================================================================
 /// Includes
 ///=============================================================================
-#include "Agave/Logging/Log.h"
+#include "Agave/Core/Log.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
 
 namespace Agave {

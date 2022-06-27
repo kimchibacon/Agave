@@ -11,7 +11,7 @@
 /// Includes
 ///=============================================================================
 #include "Agave/Core/Application.h"
-#include "Agave/Logging/Log.h"
+#include "Agave/Core/Log.h"
 #include "Agave/Events/ApplicationEvent.h"
 
 namespace Agave {
