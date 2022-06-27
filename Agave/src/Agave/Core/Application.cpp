@@ -12,6 +12,7 @@
 ///=============================================================================
 #include "Agave/Core/Application.h"
 #include "Agave/Logging/Log.h"
+#include "Agave/Events/ApplicationEvent.h"
 
 namespace Agave {
     ///=========================================================================
@@ -28,6 +29,17 @@ namespace Agave {
     ///=========================================================================
     void Application::Run()
     {
+        WindowResizeEvent e(1280, 720);
+        if (e.IsInCategory(EventCategoryApplication))
+        {
+            AgLogTrace(e);
+        }
+        
+        if (e.IsInCategory(EventCategoryInput))
+        {
+            AgLogTrace(e);
+        }
+
         while(true);
     }
 }

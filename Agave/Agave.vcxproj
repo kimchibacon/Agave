@@ -140,9 +140,14 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Agave\Core\AgaveTypes.h" />
     <ClInclude Include="src\Agave\Core\Application.h" />
     <ClInclude Include="src\Agave\Core\Base.h" />
     <ClInclude Include="src\Agave\Core\EntryPoint.h" />
+    <ClInclude Include="src\Agave\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\Agave\Events\Event.h" />
+    <ClInclude Include="src\Agave\Events\KeyEvent.h" />
+    <ClInclude Include="src\Agave\Events\MouseEvent.h" />
     <ClInclude Include="src\Agave\Logging\Log.h" />
   </ItemGroup>
   <ItemGroup>

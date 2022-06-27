@@ -15,7 +15,7 @@
 ///=============================================================================
 #include "Agave/Core/Base.h"
 #include <spdlog/spdlog.h>
-#include <memory>
+#include <spdlog/fmt/ostr.h>
 
 namespace Agave {
 

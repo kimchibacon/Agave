@@ -21,6 +21,11 @@
     <ClInclude Include="src\Agave\Logging\Log.h">
       <Filter>Logging</Filter>
     </ClInclude>
+    <ClInclude Include="src\Agave\Events\Event.h" />
+    <ClInclude Include="src\Agave\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\Agave\Core\AgaveTypes.h" />
+    <ClInclude Include="src\Agave\Events\KeyEvent.h" />
+    <ClInclude Include="src\Agave\Events\MouseEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Agave\Core\Application.cpp">
