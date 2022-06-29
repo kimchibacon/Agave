@@ -51,6 +51,7 @@ workspace "Agave"
 
         postbuildcommands {
             -- Copy engine dll to Sandbox
+            ("{mkdir} ../bin/" .. outputdir .. "/Sandbox"),
             ("{copy} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
         }
 
