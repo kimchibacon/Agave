@@ -50,7 +50,7 @@ namespace Agave {
         virtual u32 GetHeight() const = 0;
 
         // Window attributes
-        virtual void SetEventCallback(Gallant::Delegate<void (Event&)> callback) = 0;
+        virtual void SetEventCallback(Gallant::Delegate1<Event&> callback) = 0;
         virtual void SetVSync(bool enabled) = 0;
         virtual bool IsVSync() const = 0;
 

@@ -15,6 +15,12 @@
 ///=============================================================================
 #include "Agave/Core/Base.h"
 #include "Agave/Core/Window.h"
+#include "Agave/Events/ApplicationEvent.h"
+
+///=============================================================================
+/// Forward Declarations
+///=============================================================================
+class WindowCloseEvent;
 
 namespace Agave {
     ///=========================================================================
@@ -33,6 +39,8 @@ namespace Agave {
         /// Public Methods
         ///=====================================================================
         void Run();
+        void OnEvent(Event& event);
+        bool OnWindowClose(WindowCloseEvent& event);
 
     private:
         ///=====================================================================

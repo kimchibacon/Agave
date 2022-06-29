@@ -55,12 +55,12 @@ namespace Agave {
     {
     public:
         MouseScrolledEvent(const float xOffset, const float yOffset)
-            : m_offsetX(xOffset)
-            , m_offsetY(yOffset)
+            : m_xOffset(xOffset)
+            , m_yOffset(yOffset)
         {}
 
-        float GetXOffset() const { return m_offsetX; }
-        float GetYOffset() const { return m_offsetY; }
+        float GetXOffset() const { return m_xOffset; }
+        float GetYOffset() const { return m_yOffset; }
 
         std::string ToString() const override
         {
@@ -73,8 +73,8 @@ namespace Agave {
         EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 
     private:
-        float m_offsetX;
-        float m_offsetY;
+        float m_xOffset;
+        float m_yOffset;
     };
 
     ///=========================================================================

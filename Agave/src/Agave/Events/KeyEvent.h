@@ -43,24 +43,24 @@ namespace Agave {
     class AGAVE_API KeyPressedEvent : public KeyEvent
     {
     public:
-        KeyPressedEvent(const s32 keyCode, const s32 repeatCount)
+        KeyPressedEvent(const s32 keyCode, const bool isRepeat = false)
             : KeyEvent(keyCode)
-            , m_repeatCount(repeatCount)
+            , m_isRepeat(isRepeat)
         {}
 
-        s32 GetRepeatCount() const { return m_repeatCount; }
+        bool IsRepeat() const { return m_isRepeat; }
 
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "KeyPressedEvent: " << m_keyCode << " (" << m_repeatCount << " repeats)";
+            ss << "KeyPressedEvent: " << m_keyCode << " (repeat=" << m_isRepeat << ")";
             return ss.str();
         }
 
         EVENT_CLASS_TYPE(KeyPressed)
 
     private:
-        s32 m_repeatCount;
+        bool m_isRepeat;
     };
 
     ///=========================================================================

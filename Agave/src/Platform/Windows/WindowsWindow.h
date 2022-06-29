@@ -32,8 +32,13 @@ namespace Agave {
             u32 m_width;
             u32 m_height;
             bool m_isVSync;
-
             Gallant::Delegate<void (Event&)> m_eventCallback;
+
+            WindowData()
+                : m_width(0)
+                , m_height(0)
+                , m_isVSync(false)
+            {}
         };
 
     public:
@@ -50,7 +55,7 @@ namespace Agave {
         void OnUpdate() override;
         u32 GetWidth() const override { return m_data.m_width; }
         u32 GetHeight() const override { return m_data.m_height; }
-        void SetEventCallback(Gallant::Delegate<void (Event&)> callback) override { m_data.m_eventCallback = callback; }
+        void SetEventCallback(Gallant::Delegate1<Event&> callback) override { m_data.m_eventCallback = callback; }
         void SetVSync(bool enabled) override;
         bool IsVSync() const override;
 
@@ -59,6 +64,7 @@ namespace Agave {
         /// Private Methods
         ///=====================================================================
         virtual void Init(const WindowProps& props);
+        virtual void RegisterEventCallbacks();
         virtual void Shutdown();
 
     private:
