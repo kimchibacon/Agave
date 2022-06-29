@@ -18,7 +18,10 @@ namespace Agave {
     ///=========================================================================
     ///=========================================================================
     Application::Application()
-    {}
+        : m_running(true)
+    {
+        m_window = std::unique_ptr<Window>(Window::Create());
+    }
 
     ///=========================================================================
     ///=========================================================================
@@ -29,17 +32,9 @@ namespace Agave {
     ///=========================================================================
     void Application::Run()
     {
-        WindowResizeEvent e(1280, 720);
-        if (e.IsInCategory(EventCategoryApplication))
+        while (m_running)
         {
-            AgLogTrace(e);
+            m_window->OnUpdate();
         }
-        
-        if (e.IsInCategory(EventCategoryInput))
-        {
-            AgLogTrace(e);
-        }
-
-        while(true);
     }
 }

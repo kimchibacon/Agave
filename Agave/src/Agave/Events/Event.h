@@ -19,11 +19,9 @@
 
 namespace Agave {
 
-    // Events in Hazel are currently blocking, meaning when an event occurs it
-    // immediately gets dispatched and must be dealt with right then and there.
-    // For the future, a better strategy might be to buffer events in an event
-    // bus and process them during the "event" part of the update stage.
-
+    ///=========================================================================
+    /// Types
+    ///=========================================================================
     enum class EventType
     {
         None = 0,
@@ -43,12 +41,17 @@ namespace Agave {
         EventCategoryMouseButton    = BIT(4)
     };
 
+    ///=========================================================================
+    /// Macros
+    ///=========================================================================
 #define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::type;}\
                                virtual EventType GetEventType() const override { return GetStaticType(); }\
                                virtual const char* GetName() const override { return #type; }
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
+    ///=========================================================================
+    ///=========================================================================
     class AGAVE_API Event
     {
         friend class EventDispatcher;
@@ -68,6 +71,8 @@ namespace Agave {
         bool m_handled = false;
     };
 
+    ///=========================================================================
+    ///=========================================================================
     class EventDispatcher
     {
     public:

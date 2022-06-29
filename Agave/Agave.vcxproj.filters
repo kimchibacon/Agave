@@ -1,48 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Core">
-      <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
+    <Filter Include="Agave">
+      <UniqueIdentifier>{2960D10C-9574-F9BD-5EF6-9C1DCAC9F5EE}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Events">
-      <UniqueIdentifier>{3A8963B1-262B-8E87-0FE6-A1DBFB2615D8}</UniqueIdentifier>
+    <Filter Include="Agave\Core">
+      <UniqueIdentifier>{2106CA09-0DBE-0B57-76C5-E4B2629CA647}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Agave\Events">
+      <UniqueIdentifier>{ED2386A9-D986-154E-820C-4E046E4EE1D0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Agave\Core\AgaveTypes.h">
-      <Filter>Core</Filter>
+      <Filter>Agave\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Agave\Core\Application.h">
-      <Filter>Core</Filter>
+      <Filter>Agave\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Agave\Core\Assert.h">
+      <Filter>Agave\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Agave\Core\Base.h">
-      <Filter>Core</Filter>
+      <Filter>Agave\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Agave\Core\Delegate.h">
+      <Filter>Agave\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Agave\Core\EntryPoint.h">
-      <Filter>Core</Filter>
+      <Filter>Agave\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Agave\Core\Log.h">
-      <Filter>Core</Filter>
+      <Filter>Agave\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Agave\Core\Window.h">
+      <Filter>Agave\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Agave\Events\ApplicationEvent.h">
-      <Filter>Events</Filter>
+      <Filter>Agave\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Agave\Events\Event.h">
-      <Filter>Events</Filter>
+      <Filter>Agave\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Agave\Events\KeyEvent.h">
-      <Filter>Events</Filter>
+      <Filter>Agave\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Agave\Events\MouseEvent.h">
-      <Filter>Events</Filter>
+      <Filter>Agave\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Agave\Core\Application.cpp">
-      <Filter>Core</Filter>
+      <Filter>Agave\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Agave\Core\Log.cpp">
-      <Filter>Core</Filter>
+      <Filter>Agave\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

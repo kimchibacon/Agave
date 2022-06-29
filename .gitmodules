@@ -1,3 +1,6 @@
 [submodule "Agave/vendor/spdlog"]
 	path = Agave/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Agave/vendor/glfw"]
+	path = Agave/vendor/glfw
+	url = https://github.com/kimchibacon/glfw

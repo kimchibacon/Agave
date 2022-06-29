@@ -2,14 +2,19 @@ workspace "Agave"
     architecture "x64"
     startproject "Sandbox"
 
-    configurations
-    {
+    configurations {
         "Debug",
         "Release",
         "Dist"
     }
 
     outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+
+    -- Include directories relative to root folder (solution directory)
+    IncludeDir = {}
+    IncludeDir["glfw"] = "Agave/vendor/glfw/include"
+
+    include "Agave/vendor/glfw"
 
     project "Agave"
         location "Agave"
@@ -18,16 +23,20 @@ workspace "Agave"
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("obj/" .. outputdir .. "/%{prj.name}")
 
-        files
-        {
+        files {
             "%{prj.name}/src/**.h",
             "%{prj.name}/src/**.cpp"
         }
 
-        includedirs
-        {
+        includedirs {
             "%{prj.name}/src",
-            "%{prj.name}/vendor/spdlog/include"
+            "%{prj.name}/vendor/spdlog/include",
+            "%{IncludeDir.glfw}"
+        }
+
+        links { 
+            "GLFW",
+            "opengl32.lib"
         }
 
         filter "system:windows"
@@ -35,14 +44,12 @@ workspace "Agave"
             staticruntime "On"
             systemversion "latest"
 
-        defines
-        {
+        defines {
             "AGAVE_PLATFORM_WINDOWS",
             "AGAVE_BUILD_DLL"
         }
 
-        postbuildcommands
-        {
+        postbuildcommands {
             -- Copy engine dll to Sandbox
             ("{copy} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
         }
@@ -66,20 +73,17 @@ workspace "Agave"
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("obj/" .. outputdir .. "/%{prj.name}")
 
-        files
-        {
+        files {
             "%{prj.name}/src/**.h",
             "%{prj.name}/src/**.cpp"
         }
 
-        includedirs
-        {
+        includedirs {
             "Agave/src",
             "Agave/vendor/spdlog/include"
         }
 
-        links
-        {
+        links {
             "Agave"
         }
 
@@ -88,8 +92,7 @@ workspace "Agave"
             staticruntime "On"
             systemversion "latest"
 
-        defines
-        {
+        defines {
             "AGAVE_PLATFORM_WINDOWS"
         }
 
