@@ -33,6 +33,8 @@ int main(int argc, char** argv)
     auto pApp = Agave::CreateApplication();
     pApp->Run();
     delete pApp;
+
+    return 0;
 }
 
 #endif // #ifdef AGAVE_PLATFORM_WINDOWS

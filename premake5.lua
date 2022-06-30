@@ -56,7 +56,10 @@ workspace "Agave"
         }
 
         filter "configurations:Debug"
-            defines "AGAVE_DEBUG"
+            defines { 
+                "AGAVE_DEBUG",
+                "AGAVE_ENABLE_ASSERTS"
+            } 
             symbols "On"
 
         filter "configurations:Release"
@@ -98,7 +101,10 @@ workspace "Agave"
         }
 
         filter "configurations:Debug"
-            defines "AGAVE_DEBUG"
+            defines { 
+                "AGAVE_DEBUG",
+                "AGAVE_ENABLE_ASSERTS"
+            } 
             symbols "On"
 
         filter "configurations:Release"
