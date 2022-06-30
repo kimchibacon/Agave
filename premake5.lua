@@ -41,7 +41,6 @@ workspace "Agave"
 
         filter "system:windows"
             cppdialect "C++11"
-            staticruntime "On"
             systemversion "latest"
 
         defines {
@@ -61,14 +60,21 @@ workspace "Agave"
                 "AGAVE_ENABLE_ASSERTS"
             } 
             symbols "On"
+            staticruntime "Off"
+            runtime "Debug"
+
 
         filter "configurations:Release"
             defines "AGAVE_RELEASE"
             optimize "On"
+            staticruntime "Off"
+            runtime "Release"
 
         filter "configurations:Dist"
             defines "AGAVE_DIST"
             optimize "On"
+            staticruntime "Off"
+            runtime "Release"
 
     project "Sandbox"
         location "Sandbox"
@@ -93,7 +99,6 @@ workspace "Agave"
 
         filter "system:windows"
             cppdialect "C++11"
-            staticruntime "On"
             systemversion "latest"
 
         defines {
@@ -106,11 +111,17 @@ workspace "Agave"
                 "AGAVE_ENABLE_ASSERTS"
             } 
             symbols "On"
+            staticruntime "Off"
+            runtime "Debug"
 
         filter "configurations:Release"
             defines "AGAVE_RELEASE"
             optimize "On"
+            staticruntime "Off"
+            runtime "Release"
 
         filter "configurations:Dist"
             defines "AGAVE_DIST"
             optimize "On"
+            staticruntime "Off"
+            runtime "Release"
