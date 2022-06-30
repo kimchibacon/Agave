@@ -152,6 +152,8 @@ IF EXIST ..\bin\Dist-windows-x86_64\Agave\Agave.dll\ (xcopy /Q /E /Y /I ..\bin\D
     <ClInclude Include="src\Agave\Core\Base.h" />
     <ClInclude Include="src\Agave\Core\Delegate.h" />
     <ClInclude Include="src\Agave\Core\EntryPoint.h" />
+    <ClInclude Include="src\Agave\Core\Layer.h" />
+    <ClInclude Include="src\Agave\Core\LayerStack.h" />
     <ClInclude Include="src\Agave\Core\Log.h" />
     <ClInclude Include="src\Agave\Core\Window.h" />
     <ClInclude Include="src\Agave\Events\ApplicationEvent.h" />
@@ -162,6 +164,8 @@ IF EXIST ..\bin\Dist-windows-x86_64\Agave\Agave.dll\ (xcopy /Q /E /Y /I ..\bin\D
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Agave\Core\Application.cpp" />
+    <ClCompile Include="src\Agave\Core\Layer.cpp" />
+    <ClCompile Include="src\Agave\Core\LayerStack.cpp" />
     <ClCompile Include="src\Agave\Core\Log.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>

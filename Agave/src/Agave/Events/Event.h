@@ -67,7 +67,7 @@ namespace Agave {
             return GetCategoryFlags() & category;
         }
 
-    protected:
+    public:
         bool m_handled = false;
     };
 

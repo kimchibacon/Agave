@@ -1,84 +1,92 @@
 ///=============================================================================
-/// Application.cpp
+/// LayerStack.cpp
 /// Agave/Core
 ///
 /// Copyright (c) 2022 Joshua Palmer. All rights reserved.
 ///
-/// Application class representing client application.
+/// Collection for application Layers
 ///=============================================================================
 
 ///=============================================================================
 /// Includes
 ///=============================================================================
-#include "Agave/Core/Application.h"
-#include "Agave/Core/Log.h"
-#include "Agave/Core/Delegate.h"
+#include "Agave/Core/LayerStack.h"
 
 namespace Agave {
 
     ///=========================================================================
     ///=========================================================================
-    Application::Application()
-        : m_running(true)
+    LayerStack::~LayerStack()
     {
-        m_pWindow = std::unique_ptr<Window>(Window::Create());
-
-        Gallant::Delegate<void (Event&)> callback;
-        callback.Bind(this, &Application::OnEvent);
-        m_pWindow->SetEventCallback(callback);
-    }
-
-    ///=========================================================================
-    ///=========================================================================
-    Application::~Application()
-    {}
-
-    ///=========================================================================
-    ///=========================================================================
-    void Application::Run()
-    {
-        while (m_running)
+        for (Layer* layer : m_layers)
         {
-            m_pWindow->OnUpdate();
-            m_layerStack.OnUpdate();
+            layer->OnDetach();
+            delete layer;
         }
     }
 
     ///=========================================================================
     ///=========================================================================
-    void Application::OnEvent(Event& event)
+    void LayerStack::PushLayer(Layer* layer)
     {
-        Gallant::Delegate<bool (WindowCloseEvent&)> winCloseCallback;
-        winCloseCallback.Bind(this, &Application::OnWindowClose);
-
-        EventDispatcher dispatcher(event);
-        dispatcher.Dispatch<WindowCloseEvent>(winCloseCallback);
-
-        AgCoreLogTrace("{0}", event);
-
-        m_layerStack.OnEvent(event);
+        m_layers.emplace(m_layers.begin() + m_layerInsertIndex, layer);
+        m_layerInsertIndex++;
     }
 
     ///=========================================================================
     ///=========================================================================
-    void Application::PushLayer(Layer* layer)
+    void LayerStack::PushOverlay(Layer* overlay)
     {
-        m_layerStack.PushLayer(layer);
+        m_layers.emplace_back(overlay);
     }
 
     ///=========================================================================
     ///=========================================================================
-    void Application::PushOverlay(Layer* overlay)
+    void LayerStack::PopLayer(Layer* layer)
     {
-        m_layerStack.PushOverlay(overlay);
+        auto it = std::find(m_layers.begin(), m_layers.begin() + m_layerInsertIndex, layer);
+        if (it != m_layers.begin() + m_layerInsertIndex)
+        {
+            layer->OnDetach();
+            m_layers.erase(it);
+            m_layerInsertIndex--;
+        }
     }
 
     ///=========================================================================
     ///=========================================================================
-    bool Application::OnWindowClose(WindowCloseEvent& event)
+    void LayerStack::PopOverlay(Layer* overlay)
     {
-        event.m_handled = true;
-        m_running = false;
-        return true;
+        auto it = std::find(m_layers.begin() + m_layerInsertIndex, m_layers.end(), overlay);
+        if (it != m_layers.end())
+        {
+            overlay->OnDetach();
+            m_layers.erase(it);
+        }
+    }
+
+    ///=========================================================================
+    ///=========================================================================
+    void LayerStack::OnEvent(Event& event)
+    {
+        for(auto it = m_layers.rbegin(); it != m_layers.rend();)
+        {
+            (*it)->OnEvent(event);
+            if(event.m_handled)
+            {
+                break;
+            }
+            ++it;
+        }
+    }
+
+    ///=========================================================================
+    ///=========================================================================
+    void LayerStack::OnUpdate()
+    {
+        for(Layer* layer : m_layers)
+        {
+            layer->OnUpdate();
+        }
     }
 }

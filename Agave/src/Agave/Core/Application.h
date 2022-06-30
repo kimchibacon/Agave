@@ -16,13 +16,10 @@
 #include "Agave/Core/Base.h"
 #include "Agave/Core/Window.h"
 #include "Agave/Events/ApplicationEvent.h"
-
-///=============================================================================
-/// Forward Declarations
-///=============================================================================
-class WindowCloseEvent;
+#include "Agave/Core/LayerStack.h"
 
 namespace Agave {
+
     ///=========================================================================
     ///=========================================================================
     class AGAVE_API Application
@@ -40,14 +37,18 @@ namespace Agave {
         ///=====================================================================
         void Run();
         void OnEvent(Event& event);
-        bool OnWindowClose(WindowCloseEvent& event);
+        void PushLayer(Layer* layer);
+        void PushOverlay(Layer* overlay);
 
+    private:
+        bool OnWindowClose(WindowCloseEvent& event);
     private:
         ///=====================================================================
         /// Private Fields
         ///=====================================================================
-        std::unique_ptr<Window> m_window;
-        bool                    m_running;
+        std::unique_ptr<Window>     m_pWindow;
+        bool                        m_running;
+        LayerStack                  m_layerStack;
     };
 
     // Defined by client

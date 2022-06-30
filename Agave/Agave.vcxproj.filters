@@ -57,6 +57,10 @@
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="src\Agave\Core\Layer.h">
+      <Filter>Agave\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Agave\Core\LayerStack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Agave\Core\Application.cpp">
@@ -68,5 +72,7 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\Agave\Core\Layer.cpp" />
+    <ClCompile Include="src\Agave\Core\LayerStack.cpp" />
   </ItemGroup>
 </Project>
