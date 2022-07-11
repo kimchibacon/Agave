@@ -13,8 +13,10 @@ workspace "Agave"
     -- Include directories relative to root folder (solution directory)
     IncludeDir = {}
     IncludeDir["glfw"] = "Agave/vendor/glfw/include"
+    IncludeDir["glad"] = "Agave/vendor/glad/include"
 
     include "Agave/vendor/glfw"
+    include "Agave/vendor/glad"
 
     project "Agave"
         location "Agave"
@@ -31,11 +33,13 @@ workspace "Agave"
         includedirs {
             "%{prj.name}/src",
             "%{prj.name}/vendor/spdlog/include",
-            "%{IncludeDir.glfw}"
+            "%{IncludeDir.glfw}",
+            "%{IncludeDir.glad}"
         }
 
         links { 
             "GLFW",
+            "GLAD",
             "opengl32.lib"
         }
 
@@ -43,16 +47,17 @@ workspace "Agave"
             cppdialect "C++11"
             systemversion "latest"
 
-        defines {
-            "AGAVE_PLATFORM_WINDOWS",
-            "AGAVE_BUILD_DLL"
-        }
+            defines {
+                "AGAVE_PLATFORM_WINDOWS",
+                "AGAVE_BUILD_DLL",
+                "GLFW_INCLUDE_NONE"
+            }
 
-        postbuildcommands {
-            -- Copy engine dll to Sandbox
-            ("{mkdir} ../bin/" .. outputdir .. "/Sandbox"),
-            ("{copy} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
-        }
+            postbuildcommands {
+                -- Copy engine dll to Sandbox
+                ("{mkdir} ../bin/" .. outputdir .. "/Sandbox"),
+                ("{copy} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+            }
 
         filter "configurations:Debug"
             defines { 

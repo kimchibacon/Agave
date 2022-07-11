@@ -13,6 +13,7 @@
 #include "Agave/Core/Application.h"
 #include "Agave/Core/Log.h"
 #include "Agave/Core/Delegate.h"
+#include <glad/glad.h>
 
 namespace Agave {
 
