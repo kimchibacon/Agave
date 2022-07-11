@@ -31,7 +31,7 @@ namespace Agave {
         MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
     };
 
-    enum EventCategory
+    enum EventCategory : u32
     {
         None = 0,
         EventCategoryApplication    = BIT(0),
@@ -48,7 +48,7 @@ namespace Agave {
                                virtual EventType GetEventType() const override { return GetStaticType(); }\
                                virtual const char* GetName() const override { return #type; }
 
-#define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
+#define EVENT_CLASS_CATEGORY(category) virtual u32 GetCategoryFlags() const override { return category; }
 
     ///=========================================================================
     ///=========================================================================
@@ -59,7 +59,7 @@ namespace Agave {
     public:
         virtual EventType GetEventType() const = 0;
         virtual const char* GetName() const = 0;
-        virtual int GetCategoryFlags() const = 0;
+        virtual u32 GetCategoryFlags() const = 0;
         virtual std::string ToString() const { return GetName(); }
 
         bool IsInCategory(EventCategory category)
