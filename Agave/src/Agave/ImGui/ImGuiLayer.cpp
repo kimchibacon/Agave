@@ -72,9 +72,9 @@ namespace Agave {
     {
         Application& app = Application::Instance();
         ImGuiIO& io = ImGui::GetIO();
-        io.DisplaySize = ImVec2(app.GetWindow().GetWidth(), app.GetWindow().GetHeight());
+        io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());
 
-        float time = ( float )glfwGetTime();
+        float time = (float)glfwGetTime();
         io.DeltaTime = m_time > 0.0 ? (time - m_time) : (1.0f / 60.0f);
         m_time = time;
 
