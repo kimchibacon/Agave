@@ -31,6 +31,8 @@ namespace Agave {
     {
         m_layers.emplace(m_layers.begin() + m_layerInsertIndex, layer);
         m_layerInsertIndex++;
+
+        layer->OnAttach();
     }
 
     ///=========================================================================

@@ -4,7 +4,7 @@
 ///
 /// Copyright (c) 2022 Joshua Palmer. All rights reserved.
 ///
-/// Application class representing client application.
+/// Application singleton class representing client application.
 ///=============================================================================
 
 #ifndef AGAVE_APPLICATION_H
@@ -35,13 +35,19 @@ namespace Agave {
         ///=====================================================================
         /// Public Methods
         ///=====================================================================
+        static Application& Instance() { return *ms_pInstance; }
+        Window& GetWindow() { return *m_pWindow; }
         void Run();
         void OnEvent(Event& event);
         void PushLayer(Layer* layer);
         void PushOverlay(Layer* overlay);
 
+        ///=====================================================================
+        /// Private Methods
+        ///=====================================================================
     private:
         bool OnWindowClose(WindowCloseEvent& event);
+
     private:
         ///=====================================================================
         /// Private Fields
@@ -49,6 +55,8 @@ namespace Agave {
         std::unique_ptr<Window>     m_pWindow;
         bool                        m_running;
         LayerStack                  m_layerStack;
+
+        static Application*         ms_pInstance;
     };
 
     // Defined by client

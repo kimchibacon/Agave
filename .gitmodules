@@ -4,3 +4,6 @@
 [submodule "Agave/vendor/glfw"]
 	path = Agave/vendor/glfw
 	url = https://github.com/kimchibacon/glfw
+[submodule "Agave/vendor/imgui"]
+	path = Agave/vendor/imgui
+	url = https://github.com/kimchibacon/imgui

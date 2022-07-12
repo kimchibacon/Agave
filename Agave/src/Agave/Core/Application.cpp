@@ -4,7 +4,7 @@
 ///
 /// Copyright (c) 2022 Joshua Palmer. All rights reserved.
 ///
-/// Application class representing client application.
+/// Application singleton class representing client application.
 ///=============================================================================
 
 ///=============================================================================
@@ -13,15 +13,21 @@
 #include "Agave/Core/Application.h"
 #include "Agave/Core/Log.h"
 #include "Agave/Core/Delegate.h"
+#include "Agave/Core/Assert.h"
 #include <glad/glad.h>
 
 namespace Agave {
+
+    Application* Application::ms_pInstance = nullptr;
 
     ///=========================================================================
     ///=========================================================================
     Application::Application()
         : m_running(true)
     {
+        AGAVE_CORE_ASSERT(ms_pInstance == nullptr);
+        ms_pInstance = this;
+
         m_pWindow = std::unique_ptr<Window>(Window::Create());
 
         Gallant::Delegate<void (Event&)> callback;

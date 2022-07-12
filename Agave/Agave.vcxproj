@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>AGAVE_PLATFORM_WINDOWS;AGAVE_BUILD_DLL;GLFW_INCLUDE_NONE;AGAVE_DEBUG;AGAVE_ENABLE_ASSERTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\glfw\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\glfw\include;vendor\glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -100,7 +100,7 @@ IF EXIST ..\bin\Debug-windows-x86_64\Agave\Agave.dll\ (xcopy /Q /E /Y /I ..\bin\
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>AGAVE_PLATFORM_WINDOWS;AGAVE_BUILD_DLL;GLFW_INCLUDE_NONE;AGAVE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\glfw\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\glfw\include;vendor\glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -125,7 +125,7 @@ IF EXIST ..\bin\Release-windows-x86_64\Agave\Agave.dll\ (xcopy /Q /E /Y /I ..\bi
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>AGAVE_PLATFORM_WINDOWS;AGAVE_BUILD_DLL;GLFW_INCLUDE_NONE;AGAVE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\glfw\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\glfw\include;vendor\glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -160,6 +160,9 @@ IF EXIST ..\bin\Dist-windows-x86_64\Agave\Agave.dll\ (xcopy /Q /E /Y /I ..\bin\D
     <ClInclude Include="src\Agave\Events\Event.h" />
     <ClInclude Include="src\Agave\Events\KeyEvent.h" />
     <ClInclude Include="src\Agave\Events\MouseEvent.h" />
+    <ClInclude Include="src\Agave\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGlLoader.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +170,8 @@ IF EXIST ..\bin\Dist-windows-x86_64\Agave\Agave.dll\ (xcopy /Q /E /Y /I ..\bin\D
     <ClCompile Include="src\Agave\Core\Layer.cpp" />
     <ClCompile Include="src\Agave\Core\LayerStack.cpp" />
     <ClCompile Include="src\Agave\Core\Log.cpp" />
+    <ClCompile Include="src\Agave\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +180,9 @@ IF EXIST ..\bin\Dist-windows-x86_64\Agave\Agave.dll\ (xcopy /Q /E /Y /I ..\bin\D
     </ProjectReference>
     <ProjectReference Include="vendor\glad\Glad.vcxproj">
       <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\imgui\ImGui.vcxproj">
+      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
