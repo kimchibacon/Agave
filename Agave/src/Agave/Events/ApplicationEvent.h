@@ -22,10 +22,10 @@ namespace Agave {
     ///=========================================================================
     /// WindowResizeEvent
     ///=========================================================================
-    class AGAVE_API WindowResizeEvent : public Event
+    class AGAVE_API WindowResizedEvent : public Event
     {
     public:
-        WindowResizeEvent(const u32 width, const u32 height)
+        WindowResizedEvent(const u32 width, const u32 height)
             : m_width(width)
             , m_height(height)
         {}
@@ -40,7 +40,7 @@ namespace Agave {
             return ss.str();
         }
 
-        EVENT_CLASS_TYPE(WindowResize)
+        EVENT_CLASS_TYPE(WindowResized)
         EVENT_CLASS_CATEGORY(EventCategoryApplication)
 
     private:
@@ -51,12 +51,12 @@ namespace Agave {
     ///=========================================================================
     /// WindowResizeEvent
     ///=========================================================================
-    class AGAVE_API WindowCloseEvent : public Event
+    class AGAVE_API WindowClosedEvent : public Event
     {
     public:
-        WindowCloseEvent() {}
+        WindowClosedEvent() {}
 
-        EVENT_CLASS_TYPE(WindowClose)
+        EVENT_CLASS_TYPE(WindowClosed)
         EVENT_CLASS_CATEGORY(EventCategoryApplication)
     };
 }

@@ -40,6 +40,8 @@ namespace Agave {
     void LayerStack::PushOverlay(Layer* overlay)
     {
         m_layers.emplace_back(overlay);
+
+        overlay->OnAttach();
     }
 
     ///=========================================================================

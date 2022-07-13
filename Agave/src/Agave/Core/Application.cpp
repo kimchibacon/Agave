@@ -46,8 +46,8 @@ namespace Agave {
     {
         while (m_running)
         {
-            m_pWindow->OnUpdate();
             m_layerStack.OnUpdate();
+            m_pWindow->OnUpdate();
         }
     }
 
@@ -55,13 +55,8 @@ namespace Agave {
     ///=========================================================================
     void Application::OnEvent(Event& event)
     {
-        Gallant::Delegate<bool (WindowCloseEvent&)> winCloseCallback;
-        winCloseCallback.Bind(this, &Application::OnWindowClose);
-
         EventDispatcher dispatcher(event);
-        dispatcher.Dispatch<WindowCloseEvent>(winCloseCallback);
-
-        AgCoreLogTrace("{0}", event);
+        dispatcher.Dispatch<WindowClosedEvent>(Gallant::Delegate<bool(WindowClosedEvent&)>(this, &Application::OnWindowClose));
 
         m_layerStack.OnEvent(event);
     }
@@ -82,7 +77,7 @@ namespace Agave {
 
     ///=========================================================================
     ///=========================================================================
-    bool Application::OnWindowClose(WindowCloseEvent& event)
+    bool Application::OnWindowClose(WindowClosedEvent& event)
     {
         event.m_handled = true;
         m_running = false;

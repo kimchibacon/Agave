@@ -82,6 +82,26 @@ namespace Agave {
 
         EVENT_CLASS_TYPE(KeyReleased)
     };
+
+    ///=========================================================================
+    /// KeyTypedEvent
+    ///=========================================================================
+    class AGAVE_API KeyTypedEvent : public KeyEvent
+    {
+    public:
+        KeyTypedEvent(const s32 keyCode)
+            : KeyEvent(keyCode)
+        {}
+
+        std::string ToString() const override
+        {
+            std::stringstream ss;
+            ss << "KeyTypedEvent: " << m_keyCode;
+            return ss.str();
+        }
+
+        EVENT_CLASS_TYPE(KeyTyped)
+    };
 }
 
 #endif // #ifndef AGAVE_KEY_EVENT_H

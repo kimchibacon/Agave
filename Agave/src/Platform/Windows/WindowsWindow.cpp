@@ -90,7 +90,7 @@ namespace Agave {
                 pData->m_width = width;
                 pData->m_height = height;
 
-                WindowResizeEvent event(width, height);
+                WindowResizedEvent event(width, height);
                 pData->m_eventCallback(event);
             });
 
@@ -98,7 +98,7 @@ namespace Agave {
             {
                 WindowData* pData = (WindowData*)glfwGetWindowUserPointer(pWindow);
 
-                WindowCloseEvent event;
+                WindowClosedEvent event;
                 pData->m_eventCallback(event);
             });
 
@@ -127,6 +127,14 @@ namespace Agave {
                         break;
                     }
                 }
+            });
+
+        glfwSetCharCallback(m_pWindow, [](GLFWwindow* pWindow, u32 keyCode)
+            {
+                WindowData* pData = ( WindowData* )glfwGetWindowUserPointer(pWindow);
+                KeyTypedEvent event(keyCode);
+                pData->m_eventCallback(event);
+      
             });
 
         glfwSetMouseButtonCallback(m_pWindow, [](GLFWwindow* pWindow, int button, int action, int mods)
@@ -181,6 +189,9 @@ namespace Agave {
     {
         glfwPollEvents();
         glfwSwapBuffers(m_pWindow);
+
+        glClearColor(0, 0, 0, 1);
+        glClear(GL_COLOR_BUFFER_BIT);
     }
 
     ///=========================================================================

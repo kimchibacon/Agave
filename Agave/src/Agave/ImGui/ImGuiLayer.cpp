@@ -11,11 +11,15 @@
 /// Includes
 ///=============================================================================
 #include "Agave/ImGui/ImGuiLayer.h"
+#include "Agave/Core/AgaveTypes.h"
 #include "Agave/Core/Application.h"
+#include "Agave/Core/Delegate.h"
+#include "Agave/Core/Log.h"
+#include "Platform/OpenGL/ImGuiOpenGLRenderer.h"
 
 // Temporary
-#include "Platform/OpenGL/ImGuiOpenGLRenderer.h"
-#include "GLFW/glfw3.h"
+#include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
 namespace Agave {
 
@@ -29,15 +33,14 @@ namespace Agave {
 
     void ImGuiLayer::OnAttach()
     {
-        // Setup Dear ImGui context
-        IMGUI_CHECKVERSION();
         ImGui::CreateContext();
         ImGui::StyleColorsDark();
+
         ImGuiIO& io = ImGui::GetIO();
         io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
         io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
 
-        // TEMPORARY: should eventually use Hazel key codes
+        // TEMPORARY: should eventually use Agave key codes
         io.KeyMap[ImGuiKey_Tab] = GLFW_KEY_TAB;
         io.KeyMap[ImGuiKey_LeftArrow] = GLFW_KEY_LEFT;
         io.KeyMap[ImGuiKey_RightArrow] = GLFW_KEY_RIGHT;
@@ -90,6 +93,88 @@ namespace Agave {
 
     void ImGuiLayer::OnEvent(Event& event)
     {
+        EventDispatcher dispatcher(event);
+        dispatcher.Dispatch<MouseButtonPressedEvent>(Gallant::Delegate<bool(MouseButtonPressedEvent&)>(this, &ImGuiLayer::OnMouseButtonPressedEvent));
+        dispatcher.Dispatch<MouseButtonReleasedEvent>(Gallant::Delegate<bool(MouseButtonReleasedEvent&)>(this, &ImGuiLayer::OnMouseButtonReleasedEvent));
+        dispatcher.Dispatch<MouseMovedEvent>(Gallant::Delegate<bool(MouseMovedEvent&)>(this, &ImGuiLayer::OnMouseMovedEvent));
+        dispatcher.Dispatch<MouseScrolledEvent>(Gallant::Delegate<bool(MouseScrolledEvent&)>(this, &ImGuiLayer::OnMouseScrolledEvent));
+        dispatcher.Dispatch<KeyPressedEvent>(Gallant::Delegate<bool(KeyPressedEvent&)>(this, &ImGuiLayer::OnKeyPressedEvent));
+        dispatcher.Dispatch<KeyReleasedEvent>(Gallant::Delegate<bool(KeyReleasedEvent&)>(this, &ImGuiLayer::OnKeyReleasedEvent));
+        dispatcher.Dispatch<KeyTypedEvent>(Gallant::Delegate<bool(KeyTypedEvent&)>(this, &ImGuiLayer::OnKeyTypedEvent));
+        dispatcher.Dispatch<WindowResizedEvent>(Gallant::Delegate<bool(WindowResizedEvent&)>(this, &ImGuiLayer::OnWindowResizedEvent));
+    }
+   
+    bool ImGuiLayer::OnMouseButtonPressedEvent(MouseButtonPressedEvent& e)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        io.MouseDown[e.GetMouseButton()] = true;
 
+        return false;
+    }
+
+    bool ImGuiLayer::OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& e)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        io.MouseDown[e.GetMouseButton()] = false;
+
+        return false;
+    }
+
+    bool ImGuiLayer::OnMouseMovedEvent(MouseMovedEvent& e)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        io.MousePos = ImVec2(e.GetX(), e.GetY());
+
+        return false;
+    }
+
+    bool ImGuiLayer::OnMouseScrolledEvent(MouseScrolledEvent& e)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        io.MouseWheel += e.GetYOffset();
+        io.MouseWheelH += e.GetXOffset();
+
+        return false;
+    }
+
+    bool ImGuiLayer::OnKeyPressedEvent(KeyPressedEvent& e)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        io.KeysDown[e.GetKeyCode()] = true;
+
+        io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
+        io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
+        io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
+        io.KeySuper = io.KeysDown[GLFW_KEY_LEFT_SUPER] || io.KeysDown[GLFW_KEY_RIGHT_SUPER];
+
+        return false;
+    }
+
+    bool ImGuiLayer::OnKeyReleasedEvent(KeyReleasedEvent& e)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        io.KeysDown[e.GetKeyCode()] = false;
+
+        return false;
+    }
+
+    bool ImGuiLayer::OnKeyTypedEvent(KeyTypedEvent& e)
+    {
+        u32 keyCode = e.GetKeyCode();
+        ImGuiIO& io = ImGui::GetIO();
+        if (keyCode > 0 && keyCode < 0x10000)
+            io.AddInputCharacter((u16)keyCode);
+
+        return false;
+    }
+
+    bool ImGuiLayer::OnWindowResizedEvent(WindowResizedEvent& e)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        io.DisplaySize = ImVec2(e.GetWidth(), e.GetHeight());
+        io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
+        glViewport(0, 0, e.GetWidth(), e.GetHeight());
+
+        return false;
     }
 }
