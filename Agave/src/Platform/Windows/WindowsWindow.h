@@ -52,12 +52,13 @@ namespace Agave {
         ///=====================================================================
         /// Interface
         ///=====================================================================
-        void OnUpdate() override;
-        u32 GetWidth() const override { return m_data.m_width; }
-        u32 GetHeight() const override { return m_data.m_height; }
-        void SetEventCallback(Gallant::Delegate1<Event&> callback) override { m_data.m_eventCallback = callback; }
-        void SetVSync(bool enabled) override;
-        bool IsVSync() const override;
+        virtual void OnUpdate() override;
+        virtual u32 GetWidth() const override { return m_data.m_width; }
+        virtual u32 GetHeight() const override { return m_data.m_height; }
+        virtual void* GetNativeWindow() const override { return m_pWindow; };
+        virtual void SetEventCallback(Gallant::Delegate1<Event&> callback) override { m_data.m_eventCallback = callback; }
+        virtual void SetVSync(bool enabled) override;
+        virtual bool IsVSync() const override;
 
     private:
         ///=====================================================================

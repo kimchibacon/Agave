@@ -48,6 +48,7 @@ namespace Agave {
         virtual void OnUpdate() = 0;
         virtual u32 GetWidth() const = 0;
         virtual u32 GetHeight() const = 0;
+        virtual void* GetNativeWindow() const = 0;
 
         // Window attributes
         virtual void SetEventCallback(Gallant::Delegate1<Event&> callback) = 0;
