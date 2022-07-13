@@ -23,6 +23,7 @@ workspace "Agave"
     project "Agave"
         location "Agave"
         kind "SharedLib"
+        staticruntime "Off"
         language "C++"
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("obj/" .. outputdir .. "/%{prj.name}")
@@ -69,25 +70,23 @@ workspace "Agave"
                 "AGAVE_ENABLE_ASSERTS"
             } 
             symbols "On"
-            staticruntime "Off"
             runtime "Debug"
 
 
         filter "configurations:Release"
             defines "AGAVE_RELEASE"
             optimize "On"
-            staticruntime "Off"
             runtime "Release"
 
         filter "configurations:Dist"
             defines "AGAVE_DIST"
             optimize "On"
-            staticruntime "Off"
             runtime "Release"
 
     project "Sandbox"
         location "Sandbox"
         kind "ConsoleApp"
+        staticruntime "Off"
         language "C++"
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("obj/" .. outputdir .. "/%{prj.name}")
@@ -120,17 +119,14 @@ workspace "Agave"
                 "AGAVE_ENABLE_ASSERTS"
             } 
             symbols "On"
-            staticruntime "Off"
             runtime "Debug"
 
         filter "configurations:Release"
             defines "AGAVE_RELEASE"
             optimize "On"
-            staticruntime "Off"
             runtime "Release"
 
         filter "configurations:Dist"
             defines "AGAVE_DIST"
             optimize "On"
-            staticruntime "Off"
             runtime "Release"
