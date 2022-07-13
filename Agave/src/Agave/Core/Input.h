@@ -11,21 +11,24 @@
 #define AGAVE_INPUT_H
 
 #include "Agave/Core/Base.h"
+#include "Agave/Core/KeyCodes.h"
+#include "Agave/Core/MouseButtonCodes.h"
 #include <utility>
+#include <unordered_map>
 
 namespace Agave {
     class AGAVE_API Input
     {
     public:
-        static bool IsKeyPressed(s32 keycode) { return ms_pInstance->IsKeyPressedImpl(keycode); }
-        static bool IsMouseButtonPressed(s32 button) { return ms_pInstance->IsMouseButtonPressedImpl(button); }
+        static bool IsKeyPressed(Agave::KeyCode keycode) { return ms_pInstance->IsKeyPressedImpl(keycode); }
+        static bool IsMouseButtonPressed(Agave::MouseButtonCode button) { return ms_pInstance->IsMouseButtonPressedImpl(button); }
         static std::pair<float, float> GetMousePosition() { return ms_pInstance->GetMousePositionImpl(); }
         static float GetMouseX() { return ms_pInstance->GetMouseXImpl(); }
-        static float GetMouseY() { return ms_pInstance->GetMouseYImpl(); }
+        static float GetMouseY() { return ms_pInstance->GetMouseYImpl(); }        
 
     protected:
-        virtual bool IsKeyPressedImpl(s32 keycode) = 0;
-        virtual bool IsMouseButtonPressedImpl(s32 button) = 0;
+        virtual bool IsKeyPressedImpl(Agave::KeyCode keycode) = 0;
+        virtual bool IsMouseButtonPressedImpl(Agave::MouseButtonCode button) = 0;
         virtual std::pair<float, float> GetMousePositionImpl() = 0;
         virtual float GetMouseXImpl() = 0;
         virtual float GetMouseYImpl() = 0;

@@ -13,6 +13,7 @@
 #include "Agave/ImGui/ImGuiLayer.h"
 #include "Agave/Core/AgaveTypes.h"
 #include "Agave/Core/Application.h"
+#include "Agave/Core/KeyCodes.h"
 #include "Agave/Core/Delegate.h"
 #include "Agave/Core/Log.h"
 #include "Platform/OpenGL/ImGuiOpenGLRenderer.h"
@@ -40,28 +41,27 @@ namespace Agave {
         io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
         io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
 
-        // TEMPORARY: should eventually use Agave key codes
-        io.KeyMap[ImGuiKey_Tab] = GLFW_KEY_TAB;
-        io.KeyMap[ImGuiKey_LeftArrow] = GLFW_KEY_LEFT;
-        io.KeyMap[ImGuiKey_RightArrow] = GLFW_KEY_RIGHT;
-        io.KeyMap[ImGuiKey_UpArrow] = GLFW_KEY_UP;
-        io.KeyMap[ImGuiKey_DownArrow] = GLFW_KEY_DOWN;
-        io.KeyMap[ImGuiKey_PageUp] = GLFW_KEY_PAGE_UP;
-        io.KeyMap[ImGuiKey_PageDown] = GLFW_KEY_PAGE_DOWN;
-        io.KeyMap[ImGuiKey_Home] = GLFW_KEY_HOME;
-        io.KeyMap[ImGuiKey_End] = GLFW_KEY_END;
-        io.KeyMap[ImGuiKey_Insert] = GLFW_KEY_INSERT;
-        io.KeyMap[ImGuiKey_Delete] = GLFW_KEY_DELETE;
-        io.KeyMap[ImGuiKey_Backspace] = GLFW_KEY_BACKSPACE;
-        io.KeyMap[ImGuiKey_Space] = GLFW_KEY_SPACE;
-        io.KeyMap[ImGuiKey_Enter] = GLFW_KEY_ENTER;
-        io.KeyMap[ImGuiKey_Escape] = GLFW_KEY_ESCAPE;
-        io.KeyMap[ImGuiKey_A] = GLFW_KEY_A;
-        io.KeyMap[ImGuiKey_C] = GLFW_KEY_C;
-        io.KeyMap[ImGuiKey_V] = GLFW_KEY_V;
-        io.KeyMap[ImGuiKey_X] = GLFW_KEY_X;
-        io.KeyMap[ImGuiKey_Y] = GLFW_KEY_Y;
-        io.KeyMap[ImGuiKey_Z] = GLFW_KEY_Z;
+        io.KeyMap[ImGuiKey_Tab] = (s32)Agave::KeyCode::Tab;
+        io.KeyMap[ImGuiKey_LeftArrow] = (s32)Agave::KeyCode::LeftArrow;
+        io.KeyMap[ImGuiKey_RightArrow] = (s32)Agave::KeyCode::RightArrow;
+        io.KeyMap[ImGuiKey_UpArrow] = (s32)Agave::KeyCode::UpArrow;
+        io.KeyMap[ImGuiKey_DownArrow] = (s32)Agave::KeyCode::DownArrow;
+        io.KeyMap[ImGuiKey_PageUp] = (s32)Agave::KeyCode::PageUp;
+        io.KeyMap[ImGuiKey_PageDown] = (s32)Agave::KeyCode::PageDown;
+        io.KeyMap[ImGuiKey_Home] = (s32)Agave::KeyCode::Home;
+        io.KeyMap[ImGuiKey_End] = (s32)Agave::KeyCode::End;
+        io.KeyMap[ImGuiKey_Insert] = (s32)Agave::KeyCode::Insert;
+        io.KeyMap[ImGuiKey_Delete] = (s32)Agave::KeyCode::Delete;
+        io.KeyMap[ImGuiKey_Backspace] = (s32)Agave::KeyCode::Backspace;
+        io.KeyMap[ImGuiKey_Space] = (s32)Agave::KeyCode::Space;
+        io.KeyMap[ImGuiKey_Enter] = (s32)Agave::KeyCode::Enter;
+        io.KeyMap[ImGuiKey_Escape] = (s32)Agave::KeyCode::Escape;
+        io.KeyMap[ImGuiKey_A] = (s32)Agave::KeyCode::A;
+        io.KeyMap[ImGuiKey_C] = (s32)Agave::KeyCode::C;
+        io.KeyMap[ImGuiKey_V] = (s32)Agave::KeyCode::V;
+        io.KeyMap[ImGuiKey_X] = (s32)Agave::KeyCode::X;
+        io.KeyMap[ImGuiKey_Y] = (s32)Agave::KeyCode::Y;
+        io.KeyMap[ImGuiKey_Z] = (s32)Agave::KeyCode::Z;
 
         ImGui_ImplOpenGL3_Init("#version 410");
     }
@@ -107,7 +107,7 @@ namespace Agave {
     bool ImGuiLayer::OnMouseButtonPressedEvent(MouseButtonPressedEvent& e)
     {
         ImGuiIO& io = ImGui::GetIO();
-        io.MouseDown[e.GetMouseButton()] = true;
+        io.MouseDown[(s32)e.GetMouseButton()] = true;
 
         return false;
     }
@@ -115,7 +115,7 @@ namespace Agave {
     bool ImGuiLayer::OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& e)
     {
         ImGuiIO& io = ImGui::GetIO();
-        io.MouseDown[e.GetMouseButton()] = false;
+        io.MouseDown[(s32)e.GetMouseButton()] = false;
 
         return false;
     }
@@ -140,12 +140,12 @@ namespace Agave {
     bool ImGuiLayer::OnKeyPressedEvent(KeyPressedEvent& e)
     {
         ImGuiIO& io = ImGui::GetIO();
-        io.KeysDown[e.GetKeyCode()] = true;
+        io.KeysDown[(s32)e.GetKeyCode()] = true;
 
-        io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
-        io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
-        io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
-        io.KeySuper = io.KeysDown[GLFW_KEY_LEFT_SUPER] || io.KeysDown[GLFW_KEY_RIGHT_SUPER];
+        io.KeyCtrl = io.KeysDown[(s32)Agave::KeyCode::LeftControl] || io.KeysDown[(s32)Agave::KeyCode::RightControl];
+        io.KeyShift = io.KeysDown[(s32)Agave::KeyCode::LeftShift] || io.KeysDown[(s32)Agave::KeyCode::RightShift];
+        io.KeyAlt = io.KeysDown[(s32)Agave::KeyCode::LeftAlt] || io.KeysDown[(s32)Agave::KeyCode::RightAlt];
+        io.KeySuper = io.KeysDown[(s32)Agave::KeyCode::LeftSuper] || io.KeysDown[(s32)Agave::KeyCode::RightSuper];
 
         return false;
     }
@@ -153,14 +153,14 @@ namespace Agave {
     bool ImGuiLayer::OnKeyReleasedEvent(KeyReleasedEvent& e)
     {
         ImGuiIO& io = ImGui::GetIO();
-        io.KeysDown[e.GetKeyCode()] = false;
+        io.KeysDown[(s32)e.GetKeyCode()] = false;
 
         return false;
     }
 
     bool ImGuiLayer::OnKeyTypedEvent(KeyTypedEvent& e)
     {
-        u32 keyCode = e.GetKeyCode();
+        u32 keyCode = (u32)e.GetKeyCode();
         ImGuiIO& io = ImGui::GetIO();
         if (keyCode > 0 && keyCode < 0x10000)
             io.AddInputCharacter((u16)keyCode);
@@ -171,7 +171,7 @@ namespace Agave {
     bool ImGuiLayer::OnWindowResizedEvent(WindowResizedEvent& e)
     {
         ImGuiIO& io = ImGui::GetIO();
-        io.DisplaySize = ImVec2(e.GetWidth(), e.GetHeight());
+        io.DisplaySize = ImVec2((float)e.GetWidth(), (float)e.GetHeight());
         io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
         glViewport(0, 0, e.GetWidth(), e.GetHeight());
 

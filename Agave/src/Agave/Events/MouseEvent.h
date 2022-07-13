@@ -15,6 +15,7 @@
 ///=============================================================================
 #include "Agave/Core/Base.h"
 #include "Agave/Events/Event.h"
+#include "Agave/Core/MouseButtonCodes.h"
 #include <sstream>
 
 namespace Agave {
@@ -83,15 +84,15 @@ namespace Agave {
     class AGAVE_API MouseButtonEvent : public Event
     {
     public:
-        s32 GetMouseButton() const { return m_button; }
+        Agave::MouseButtonCode GetMouseButton() const { return m_button; }
         EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 
     protected:
-        MouseButtonEvent(const s32 button)
+        MouseButtonEvent(const Agave::MouseButtonCode button)
             : m_button(button) 
         {}
 
-        s32 m_button;
+        Agave::MouseButtonCode m_button;
     };
 
     ///=========================================================================
@@ -100,14 +101,14 @@ namespace Agave {
     class AGAVE_API MouseButtonPressedEvent : public MouseButtonEvent
     {
     public:
-        MouseButtonPressedEvent(const s32 button)
+        MouseButtonPressedEvent(const Agave::MouseButtonCode button)
             : MouseButtonEvent(button) 
         {}
 
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "MouseButtonPressedEvent: " << m_button;
+            ss << "MouseButtonPressedEvent: " << (s32)m_button;
             return ss.str();
         }
 
@@ -120,14 +121,14 @@ namespace Agave {
     class AGAVE_API MouseButtonReleasedEvent : public MouseButtonEvent
     {
     public:
-        MouseButtonReleasedEvent(s32 button)
+        MouseButtonReleasedEvent(Agave::MouseButtonCode button)
             : MouseButtonEvent(button) 
         {}
 
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "MouseButtonReleasedEvent: " << m_button;
+            ss << "MouseButtonReleasedEvent: " << (s32)m_button;
             return ss.str();
         }
 

@@ -15,6 +15,7 @@
 ///=============================================================================
 #include "Agave/Core/Base.h"
 #include "Agave/Events/Event.h"
+#include "Agave/Core/KeyCodes.h"
 #include <sstream>
 
 namespace Agave {
@@ -25,16 +26,16 @@ namespace Agave {
     class AGAVE_API KeyEvent : public Event
     {
     public:
-        s32 GetKeyCode() const { return m_keyCode; }
+        Agave::KeyCode GetKeyCode() const { return m_keyCode; }
         EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 
     protected:
-        KeyEvent(const s32 keyCode)
+        KeyEvent(const Agave::KeyCode keyCode)
             : m_keyCode(keyCode)
         {}
         
     protected:
-        s32 m_keyCode;
+        Agave::KeyCode m_keyCode;
     };
 
     ///=========================================================================
@@ -43,7 +44,7 @@ namespace Agave {
     class AGAVE_API KeyPressedEvent : public KeyEvent
     {
     public:
-        KeyPressedEvent(const s32 keyCode, const bool isRepeat = false)
+        KeyPressedEvent(const Agave::KeyCode keyCode, const bool isRepeat = false)
             : KeyEvent(keyCode)
             , m_isRepeat(isRepeat)
         {}
@@ -53,7 +54,7 @@ namespace Agave {
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "KeyPressedEvent: " << m_keyCode << " (repeat=" << m_isRepeat << ")";
+            ss << "KeyPressedEvent: " << (s32)m_keyCode << " (repeat=" << m_isRepeat << ")";
             return ss.str();
         }
 
@@ -69,14 +70,14 @@ namespace Agave {
     class AGAVE_API KeyReleasedEvent : public KeyEvent
     {
     public:
-        KeyReleasedEvent(const s32 keyCode)
+        KeyReleasedEvent(const Agave::KeyCode keyCode)
             : KeyEvent(keyCode)
         {}
 
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "KeyReleasedEvent: " << m_keyCode;
+            ss << "KeyReleasedEvent: " << (s32)m_keyCode;
             return ss.str();
         }
 
@@ -89,14 +90,14 @@ namespace Agave {
     class AGAVE_API KeyTypedEvent : public KeyEvent
     {
     public:
-        KeyTypedEvent(const s32 keyCode)
+        KeyTypedEvent(const Agave::KeyCode keyCode)
             : KeyEvent(keyCode)
         {}
 
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "KeyTypedEvent: " << m_keyCode;
+            ss << "KeyTypedEvent: " << (s32)m_keyCode;
             return ss.str();
         }
 

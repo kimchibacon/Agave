@@ -13,6 +13,25 @@
 #include <Agave/Core/EntryPoint.h>
 #include <Agave/Core/Application.h>
 #include <Agave/ImGui/ImGuiLayer.h>
+#include <Agave/Core/Layer.h>
+#include <Agave/Core/Input.h>
+
+class ExampleLayer : public Agave::Layer
+{
+public:
+    ExampleLayer()
+        :Layer("Example")
+    {}
+
+    virtual void OnUpdate() override
+    {
+        if(Agave::Input::IsKeyPressed(Agave::KeyCode::Tab))
+            AgLogTrace("Tab key is pressed");
+    }
+
+    virtual void OnEvent(Agave::Event& event) override
+    {}
+};
 
 ///=============================================================================
 ///=============================================================================
@@ -24,6 +43,7 @@ public:
     Sandbox()
     {
         PushOverlay(new Agave::ImGuiLayer());
+        PushLayer(new ExampleLayer());
     }
 
     ///=========================================================================

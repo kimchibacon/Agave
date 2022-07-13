@@ -11,6 +11,7 @@
 /// Includes
 ///=============================================================================
 #include "Platform/Windows/WindowsWindow.h"
+#include "Platform/Windows/WindowsInput.h"
 #include "Agave/Core/Log.h"
 #include "Agave/Core/Assert.h"
 #include "Agave/Events/ApplicationEvent.h"
@@ -102,7 +103,7 @@ namespace Agave {
                 pData->m_eventCallback(event);
             });
 
-        glfwSetKeyCallback(m_pWindow, [](GLFWwindow* pWindow, int key, int scancode, int action, int mods)
+        glfwSetKeyCallback(m_pWindow, [](GLFWwindow* pWindow, int keycode, int scancode, int action, int mods)
             {
                 WindowData* pData = ( WindowData* )glfwGetWindowUserPointer(pWindow);
 
@@ -110,29 +111,29 @@ namespace Agave {
                 {
                     case GLFW_PRESS:
                     {
-                        KeyPressedEvent event(key);
+                        KeyPressedEvent event(WindowsInput::GlfwKeyToAgaveKey(keycode));
                         pData->m_eventCallback(event);
                         break;
                     }
                     case GLFW_RELEASE:
                     {
-                        KeyReleasedEvent event(key);
+                        KeyReleasedEvent event(WindowsInput::GlfwKeyToAgaveKey(keycode));
                         pData->m_eventCallback(event);
                         break;
                     }
                     case GLFW_REPEAT:
                     {
-                        KeyPressedEvent event(key, true);
+                        KeyPressedEvent event(WindowsInput::GlfwKeyToAgaveKey(keycode), true);
                         pData->m_eventCallback(event);
                         break;
                     }
                 }
             });
 
-        glfwSetCharCallback(m_pWindow, [](GLFWwindow* pWindow, u32 keyCode)
+        glfwSetCharCallback(m_pWindow, [](GLFWwindow* pWindow, u32 keycode)
             {
                 WindowData* pData = ( WindowData* )glfwGetWindowUserPointer(pWindow);
-                KeyTypedEvent event(keyCode);
+                KeyTypedEvent event(WindowsInput::GlfwKeyToAgaveKey(keycode));
                 pData->m_eventCallback(event);
       
             });
@@ -145,14 +146,14 @@ namespace Agave {
                 {
                     case GLFW_PRESS:
                     {
-                        MouseButtonPressedEvent event(button);
+                        MouseButtonPressedEvent event(WindowsInput::GlfwMouseButtonToAgaveMouseButton(button));
                         pData->m_eventCallback(event);
                         break;
 
                     }
                     case GLFW_RELEASE:
                     {
-                        MouseButtonReleasedEvent event(button);
+                        MouseButtonReleasedEvent event(WindowsInput::GlfwMouseButtonToAgaveMouseButton(button));
                         pData->m_eventCallback(event);
                         break;
                     }
