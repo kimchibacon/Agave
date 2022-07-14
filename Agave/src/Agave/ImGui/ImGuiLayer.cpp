@@ -14,7 +14,7 @@
 #include "Agave/Core/AgaveTypes.h"
 #include "Agave/Core/Application.h"
 #include "Agave/Core/KeyCodes.h"
-#include "Agave/Core/Delegate.h"
+#include "Agave/Events/Event.h"
 #include "Agave/Core/Log.h"
 #include "Platform/OpenGL/ImGuiOpenGLRenderer.h"
 
@@ -91,17 +91,17 @@ namespace Agave {
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     }
 
+
     void ImGuiLayer::OnEvent(Event& event)
     {
-        EventDispatcher dispatcher(event);
-        dispatcher.Dispatch<MouseButtonPressedEvent>(Gallant::Delegate<bool(MouseButtonPressedEvent&)>(this, &ImGuiLayer::OnMouseButtonPressedEvent));
-        dispatcher.Dispatch<MouseButtonReleasedEvent>(Gallant::Delegate<bool(MouseButtonReleasedEvent&)>(this, &ImGuiLayer::OnMouseButtonReleasedEvent));
-        dispatcher.Dispatch<MouseMovedEvent>(Gallant::Delegate<bool(MouseMovedEvent&)>(this, &ImGuiLayer::OnMouseMovedEvent));
-        dispatcher.Dispatch<MouseScrolledEvent>(Gallant::Delegate<bool(MouseScrolledEvent&)>(this, &ImGuiLayer::OnMouseScrolledEvent));
-        dispatcher.Dispatch<KeyPressedEvent>(Gallant::Delegate<bool(KeyPressedEvent&)>(this, &ImGuiLayer::OnKeyPressedEvent));
-        dispatcher.Dispatch<KeyReleasedEvent>(Gallant::Delegate<bool(KeyReleasedEvent&)>(this, &ImGuiLayer::OnKeyReleasedEvent));
-        dispatcher.Dispatch<KeyTypedEvent>(Gallant::Delegate<bool(KeyTypedEvent&)>(this, &ImGuiLayer::OnKeyTypedEvent));
-        dispatcher.Dispatch<WindowResizedEvent>(Gallant::Delegate<bool(WindowResizedEvent&)>(this, &ImGuiLayer::OnWindowResizedEvent));
+        DISPATCH_EVENT(event, MouseButtonPressedEvent, &ImGuiLayer::OnMouseButtonPressedEvent);
+        DISPATCH_EVENT(event, MouseButtonReleasedEvent, &ImGuiLayer::OnMouseButtonReleasedEvent);
+        DISPATCH_EVENT(event, MouseMovedEvent, &ImGuiLayer::OnMouseMovedEvent);
+        DISPATCH_EVENT(event, MouseScrolledEvent, &ImGuiLayer::OnMouseScrolledEvent);
+        DISPATCH_EVENT(event, KeyPressedEvent, &ImGuiLayer::OnKeyPressedEvent);
+        DISPATCH_EVENT(event, KeyReleasedEvent, &ImGuiLayer::OnKeyReleasedEvent);
+        DISPATCH_EVENT(event, KeyTypedEvent, &ImGuiLayer::OnKeyTypedEvent);
+        DISPATCH_EVENT(event, WindowResizedEvent, &ImGuiLayer::OnWindowResizedEvent);
     }
    
     bool ImGuiLayer::OnMouseButtonPressedEvent(MouseButtonPressedEvent& e)

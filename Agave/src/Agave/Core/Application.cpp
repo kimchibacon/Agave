@@ -55,8 +55,7 @@ namespace Agave {
     ///=========================================================================
     void Application::OnEvent(Event& event)
     {
-        EventDispatcher dispatcher(event);
-        dispatcher.Dispatch<WindowClosedEvent>(Gallant::Delegate<bool(WindowClosedEvent&)>(this, &Application::OnWindowClose));
+        DISPATCH_EVENT(event, WindowClosedEvent, &Application::OnWindowClosed);
 
         m_layerStack.OnEvent(event);
     }
@@ -77,7 +76,7 @@ namespace Agave {
 
     ///=========================================================================
     ///=========================================================================
-    bool Application::OnWindowClose(WindowClosedEvent& event)
+    bool Application::OnWindowClosed(WindowClosedEvent& event)
     {
         event.m_handled = true;
         m_running = false;

@@ -46,7 +46,7 @@ namespace Agave {
         /// Private Methods
         ///=====================================================================
     private:
-        bool OnWindowClose(WindowClosedEvent& event);
+        bool OnWindowClosed(WindowClosedEvent& event);
 
     private:
         ///=====================================================================

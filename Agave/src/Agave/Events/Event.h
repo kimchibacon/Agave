@@ -14,6 +14,7 @@
 /// Includes
 ///=============================================================================
 #include "Agave/Core/Base.h"
+#include "Agave/Core/Delegate.h"
 #include <string>
 #include <iostream>
 
@@ -44,6 +45,8 @@ namespace Agave {
     ///=========================================================================
     /// Macros
     ///=========================================================================
+#define DISPATCH_EVENT(e, type, func) Agave::Event::Dispatch<type>(e, Gallant::Delegate<bool(type&)>(this, func))
+     
 #define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::type;}\
                                virtual EventType GetEventType() const override { return GetStaticType(); }\
                                virtual const char* GetName() const override { return #type; }
@@ -54,7 +57,21 @@ namespace Agave {
     ///=========================================================================
     class AGAVE_API Event
     {
-        friend class EventDispatcher;
+    public:
+        ///=====================================================================
+        /// Static Dispatch function for all event types
+        ///=====================================================================
+        template<typename T, typename F>
+        static bool Dispatch(Event& event, const F& func)
+        {
+            if(event.GetEventType() == T::GetStaticType())
+            {
+                event.m_handled |= func(static_cast< T& >(event));
+                return true;
+            }
+
+            return false;
+        }
 
     public:
         virtual EventType GetEventType() const = 0;
@@ -69,32 +86,6 @@ namespace Agave {
 
     public:
         bool m_handled = false;
-    };
-
-    ///=========================================================================
-    ///=========================================================================
-    class EventDispatcher
-    {
-    public:
-        EventDispatcher(Event& event)
-            : m_event(event)
-        {
-        }
-
-        template<typename T, typename F>
-        bool Dispatch(const F& func)
-        {
-            if (m_event.GetEventType() == T::GetStaticType())
-            {
-                m_event.m_handled |= func(static_cast<T&>(m_event));
-                return true;
-            }
-
-            return false;
-        }
-
-    private:
-        Event& m_event;
     };
 
     inline std::ostream& operator<<(std::ostream& os, const Event& e)
