@@ -28,7 +28,7 @@ namespace Agave {
 
     static void GLFWErrorCallback(int error, const char* desc)
     {
-        AgCoreLogError("GLFW ERROR ({0}): {1}", error, desc);
+        AGAVE_CORE_ERROR("GLFW ERROR ({0}): {1}", error, desc);
     }
 
     ///=========================================================================
@@ -60,7 +60,7 @@ namespace Agave {
         m_data.m_width = props.m_width;
         m_data.m_height = props.m_height;
 
-        AgCoreLogInfo("Creating window {0} ({1}, {2})", props.m_title, props.m_width, props.m_height);
+        AGAVE_CORE_INFO("Creating window {0} ({1}, {2})", props.m_title, props.m_width, props.m_height);
 
         if (!s_GLFWInitialized)
         {

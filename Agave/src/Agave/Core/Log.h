@@ -38,17 +38,17 @@ namespace Agave {
 ///=============================================================================
 /// Core Log Macros
 ///=============================================================================
-#define AgCoreLogTrace(...) ::Agave::Log::GetCoreLogger()->trace(__VA_ARGS__);
-#define AgCoreLogInfo(...) ::Agave::Log::GetCoreLogger()->info(__VA_ARGS__);
-#define AgCoreLogWarn(...) ::Agave::Log::GetCoreLogger()->warn(__VA_ARGS__);
-#define AgCoreLogError(...) ::Agave::Log::GetCoreLogger()->error(__VA_ARGS__);
+#define AGAVE_CORE_TRACE(...) ::Agave::Log::GetCoreLogger()->trace(__VA_ARGS__);
+#define AGAVE_CORE_INFO(...) ::Agave::Log::GetCoreLogger()->info(__VA_ARGS__);
+#define AGAVE_CORE_WARN(...) ::Agave::Log::GetCoreLogger()->warn(__VA_ARGS__);
+#define AGAVE_CORE_ERROR(...) ::Agave::Log::GetCoreLogger()->error(__VA_ARGS__);
 
 ///=============================================================================
 /// Client Log Macros
 ///=============================================================================
-#define AgLogTrace(...) ::Agave::Log::GetClientLogger()->trace(__VA_ARGS__);
-#define AgLogInfo(...) ::Agave::Log::GetClientLogger()->info(__VA_ARGS__);
-#define AgLogWarn(...) ::Agave::Log::GetClientLogger()->warn(__VA_ARGS__);
-#define AgLogError(...) ::Agave::Log::GetClientLogger()->error(__VA_ARGS__);
+#define AGAVE_TRACE(...) ::Agave::Log::GetClientLogger()->trace(__VA_ARGS__);
+#define AGAVE_INFO(...) ::Agave::Log::GetClientLogger()->info(__VA_ARGS__);
+#define AGAVE_WARN(...) ::Agave::Log::GetClientLogger()->warn(__VA_ARGS__);
+#define AGAVE_ERROR(...) ::Agave::Log::GetClientLogger()->error(__VA_ARGS__);
 
 #endif // #ifndef AGAVE_LOG_H

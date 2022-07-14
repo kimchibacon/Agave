@@ -26,7 +26,7 @@ public:
     virtual void OnUpdate() override
     {
         if(Agave::Input::IsKeyPressed(Agave::KeyCode::Tab))
-            AgLogTrace("Tab key is pressed");
+            AGAVE_TRACE("Tab key is pressed");
     }
 
     virtual void OnEvent(Agave::Event& event) override

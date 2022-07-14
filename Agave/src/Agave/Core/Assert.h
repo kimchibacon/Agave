@@ -13,8 +13,8 @@
 #include "Agave/Core/Log.h"
 
 #if AGAVE_ENABLE_ASSERTS
-    #define AGAVE_ASSERT(x) { if(!(x)) { AgLogError("Assertion Failed: {0}\nFile: {1}\nLine:{2}", #x, __FILE__, __LINE__); __debugbreak(); } }
-    #define AGAVE_CORE_ASSERT(x) { if(!(x)) { AgCoreLogError("Assertion Failed: {0}\nFile: {1}\nLine:{2}", #x, __FILE__, __LINE__); __debugbreak(); } }
+    #define AGAVE_ASSERT(x) { if(!(x)) { AGAVE_ERROR("Assertion Failed: {0}\nFile: {1}\nLine:{2}", #x, __FILE__, __LINE__); __debugbreak(); } }
+    #define AGAVE_CORE_ASSERT(x) { if(!(x)) { AGAVE_CORE_ERROR("Assertion Failed: {0}\nFile: {1}\nLine:{2}", #x, __FILE__, __LINE__); __debugbreak(); } }
 #else
     #define AGAVE_ASSERT(x)
     #define AGAVE_CORE_ASSERT(x)

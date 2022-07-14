@@ -26,9 +26,9 @@ extern Agave::Application* Agave::CreateApplication();
 int main(int argc, char** argv)
 {
     Agave::Log::Init();
-    AgCoreLogError("Initialized CORE logger");
+    AGAVE_CORE_ERROR("Initialized CORE logger");
     int a = 5;
-    AgLogInfo("Initialized CLIENT logger, Var={0}", a);
+    AGAVE_INFO("Initialized CLIENT logger, Var={0}", a);
 
     auto pApp = Agave::CreateApplication();
     pApp->Run();
