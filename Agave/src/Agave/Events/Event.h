@@ -45,7 +45,7 @@ namespace Agave {
     ///=========================================================================
     /// Macros
     ///=========================================================================
-#define DISPATCH_EVENT(e, type, func) Agave::Event::Dispatch<type>(e, Gallant::Delegate<bool(type&)>(this, func))
+#define DISPATCH_EVENT(agave_event, event_type, callback) Agave::Event::Dispatch<event_type>(agave_event, Gallant::Delegate<bool(event_type&)>(this, callback))
      
 #define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::type;}\
                                virtual EventType GetEventType() const override { return GetStaticType(); }\
