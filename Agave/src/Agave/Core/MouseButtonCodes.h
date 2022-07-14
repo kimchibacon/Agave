@@ -1,3 +1,12 @@
+///=============================================================================
+/// MouseButtonCodes.h
+/// Agave/Core
+///
+/// Copyright (c) 2022 Joshua Palmer. All rights reserved.
+///
+/// Agave mouse button codes
+///=============================================================================
+
 #ifndef AGAVE_MOUSE_BUTTON_CODES_H
 #define AGAVE_MOUSE_BUTTON_CODES_H
 

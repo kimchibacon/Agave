@@ -21,12 +21,18 @@ namespace Agave {
     class WindowsInput : public Input
     {
     public:
+        ///=====================================================================
+        /// Public Methods
+        ///=====================================================================
         static s32 AgaveKeyToGlfwKey(Agave::KeyCode keycode) { return m_agaveToGlfwKeyCodeMap[keycode]; }
         static Agave::KeyCode GlfwKeyToAgaveKey(s32 keycode) { return m_glfwToAgaveKeyCodeMap[keycode]; }
         static s32 AgaveMoustButtonToGlfwMouseButton(Agave::MouseButtonCode button) { return m_agaveToGlfwMouseButtonCodeMap[button]; }
         static Agave::MouseButtonCode GlfwMouseButtonToAgaveMouseButton(s32 button) { return m_glfwToAgaveMouseButtonCodeMap[button]; }
 
     protected:
+        ///=====================================================================
+        /// Base Class Implementations
+        ///=====================================================================
         virtual bool IsKeyPressedImpl(Agave::KeyCode keycode) override;
         virtual bool IsMouseButtonPressedImpl(Agave::MouseButtonCode button) override;
         virtual std::pair<float, float> GetMousePositionImpl() override;
@@ -34,6 +40,9 @@ namespace Agave {
         virtual float GetMouseYImpl() override;
 
     private:
+        ///=====================================================================
+        /// Private Members
+        ///=====================================================================
         static std::unordered_map<Agave::KeyCode, s32> m_agaveToGlfwKeyCodeMap;
         static std::unordered_map<s32, Agave::KeyCode> m_glfwToAgaveKeyCodeMap;
         static std::unordered_map<Agave::MouseButtonCode, s32> m_agaveToGlfwMouseButtonCodeMap;

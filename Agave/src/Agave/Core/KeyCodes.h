@@ -1,3 +1,12 @@
+///=============================================================================
+/// KeyCodes.h
+/// Agave/Core
+///
+/// Copyright (c) 2022 Joshua Palmer. All rights reserved.
+///
+/// Agave keyboard key codes
+///=============================================================================
+
 #ifndef AGAVE_KEY_CODES_H
 #define AGAVE_KEY_CODES_H
 

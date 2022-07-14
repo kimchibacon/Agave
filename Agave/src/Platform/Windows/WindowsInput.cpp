@@ -17,8 +17,13 @@
 
 namespace Agave {
 
+    ///=========================================================================
+    /// Singleton Instance
+    ///=========================================================================
     Input* Input::ms_pInstance = new WindowsInput();
 
+    ///=========================================================================
+    ///=========================================================================
     bool WindowsInput::IsKeyPressedImpl(Agave::KeyCode keycode)
     {
         s32 glfwKeycode = AgaveKeyToGlfwKey(keycode);
@@ -29,6 +34,8 @@ namespace Agave {
         return (state == GLFW_PRESS) || (state == GLFW_REPEAT);
     }
 
+    ///=========================================================================
+    ///=========================================================================
     bool WindowsInput::IsMouseButtonPressedImpl(Agave::MouseButtonCode button)
     {
         auto pWindow = static_cast<GLFWwindow*>(Application::Instance().GetWindow().GetNativeWindow());
@@ -37,6 +44,8 @@ namespace Agave {
         return (state == GLFW_PRESS);
     }
 
+    ///=========================================================================
+    ///=========================================================================
     std::pair<float, float> WindowsInput::GetMousePositionImpl()
     {
         auto pWindow = static_cast< GLFWwindow* >(Application::Instance().GetWindow().GetNativeWindow());
@@ -48,6 +57,8 @@ namespace Agave {
         return {(float)xPos, (float)yPos};
     }
 
+    ///=========================================================================
+    ///=========================================================================
     float WindowsInput::GetMouseXImpl()
     {
         auto pWindow = static_cast< GLFWwindow* >(Application::Instance().GetWindow().GetNativeWindow());
@@ -58,6 +69,8 @@ namespace Agave {
         return (float)xPos;
     }
 
+    ///=========================================================================
+    ///=========================================================================
     float WindowsInput::GetMouseYImpl()
     {
         auto pWindow = static_cast< GLFWwindow* >(Application::Instance().GetWindow().GetNativeWindow());
@@ -68,6 +81,9 @@ namespace Agave {
         return ( float )yPos;
     }
 
+    ///=========================================================================
+    /// Key Code and Mouse Button maps
+    ///=========================================================================
     std::unordered_map<Agave::KeyCode, s32> WindowsInput::m_agaveToGlfwKeyCodeMap = {
         {Agave::KeyCode::Space, GLFW_KEY_SPACE},
         {Agave::KeyCode::Apostrophe, GLFW_KEY_APOSTROPHE},
