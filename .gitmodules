@@ -7,3 +7,6 @@
 [submodule "Agave/vendor/imgui"]
 	path = Agave/vendor/imgui
 	url = https://github.com/kimchibacon/imgui
+[submodule "Agave/vendor/glm"]
+	path = Agave/vendor/glm
+	url = https://github.com/g-truc/glm

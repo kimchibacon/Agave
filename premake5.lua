@@ -15,6 +15,7 @@ workspace "Agave"
     IncludeDir["glfw"] = "Agave/vendor/glfw/include"
     IncludeDir["glad"] = "Agave/vendor/glad/include"
     IncludeDir["imgui"] = "Agave/vendor/imgui"
+    IncludeDir["glm"] = "Agave/vendor/glm"
 
     group "Dependencies"
         include "Agave/vendor/glfw"
@@ -40,7 +41,8 @@ workspace "Agave"
             "%{prj.name}/vendor/spdlog/include",
             "%{IncludeDir.glfw}",
             "%{IncludeDir.glad}",
-            "%{IncludeDir.imgui}"
+            "%{IncludeDir.imgui}",
+            "%{IncludeDir.glm}"
         }
 
         links { 
@@ -100,7 +102,8 @@ workspace "Agave"
 
         includedirs {
             "Agave/src",
-            "Agave/vendor/spdlog/include"
+            "Agave/vendor/spdlog/include",
+            "Agave/vendor/glm"
         }
 
         links {
