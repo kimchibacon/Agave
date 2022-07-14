@@ -12,7 +12,6 @@
 ///=============================================================================
 #include <Agave/Core/EntryPoint.h>
 #include <Agave/Core/Application.h>
-#include <Agave/ImGui/ImGuiLayer.h>
 #include <Agave/Core/Layer.h>
 #include <Agave/Core/Input.h>
 
@@ -42,7 +41,6 @@ public:
     ///=========================================================================
     Sandbox()
     {
-        PushOverlay(new Agave::ImGuiLayer());
         PushLayer(new ExampleLayer());
     }
 

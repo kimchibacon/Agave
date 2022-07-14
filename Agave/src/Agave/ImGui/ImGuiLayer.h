@@ -28,31 +28,16 @@ namespace Agave {
         ImGuiLayer();
         ~ImGuiLayer();
 
+    public:
         ///=====================================================================
         /// Public Methods
         ///=====================================================================
-        void OnAttach() override;
-        void OnDetach() override;
-        void OnUpdate() override;
-        void OnEvent(Event& event) override;
+        virtual void OnAttach() override;
+        virtual void OnDetach() override;
+        virtual void OnImGuiRender() override;
 
-        ///=====================================================================
-        /// Private Methods
-        ///=====================================================================
-        bool OnMouseButtonPressedEvent(MouseButtonPressedEvent& e);
-        bool OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& e);
-        bool OnMouseMovedEvent(MouseMovedEvent& e);
-        bool OnMouseScrolledEvent(MouseScrolledEvent& e);
-        bool OnKeyPressedEvent(KeyPressedEvent& e);
-        bool OnKeyReleasedEvent(KeyReleasedEvent& e);
-        bool OnKeyTypedEvent(KeyTypedEvent& e);
-        bool OnWindowResizedEvent(WindowResizedEvent& e);
-
-        ///=====================================================================
-        /// Private Members
-        ///=====================================================================
-    private:
-        float m_time;
+        void Begin();
+        void End();
     };
 }
 

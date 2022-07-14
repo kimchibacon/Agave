@@ -74,7 +74,7 @@ namespace Agave {
         m_pWindow = glfwCreateWindow((s32)props.m_width, (s32)props.m_height, props.m_title.c_str(), nullptr, nullptr);
         glfwMakeContextCurrent(m_pWindow);
         int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-        AGAVE_CORE_ASSERT(status, "Failed to initialize Glad!");
+        AGAVE_CORE_ASSERT(status);
         glfwSetWindowUserPointer(m_pWindow, &m_data);
         SetVSync(true);
 

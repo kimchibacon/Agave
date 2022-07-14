@@ -33,6 +33,9 @@ namespace Agave {
         Gallant::Delegate<void (Event&)> callback;
         callback.Bind(this, &Application::OnEvent);
         m_pWindow->SetEventCallback(callback);
+
+        m_pImGuiLayer = new ImGuiLayer();
+        PushOverlay(m_pImGuiLayer);
     }
 
     ///=========================================================================
@@ -47,6 +50,13 @@ namespace Agave {
         while (m_running)
         {
             m_layerStack.OnUpdate();
+
+            // Render ImGui on all layers
+            m_pImGuiLayer->Begin();
+            for(Layer* layer : m_layerStack)
+                layer->OnImGuiRender();
+            m_pImGuiLayer->End();
+
             m_pWindow->OnUpdate();
         }
     }

@@ -17,6 +17,7 @@
 #include "Agave/Core/Window.h"
 #include "Agave/Events/ApplicationEvent.h"
 #include "Agave/Core/LayerStack.h"
+#include "Agave/ImGui/ImGuiLayer.h"
 
 namespace Agave {
 
@@ -36,6 +37,7 @@ namespace Agave {
         /// Public Methods
         ///=====================================================================
         static Application& Instance() { return *ms_pInstance; }
+
         Window& GetWindow() { return *m_pWindow; }
         void Run();
         void OnEvent(Event& event);
@@ -55,6 +57,7 @@ namespace Agave {
         std::unique_ptr<Window>     m_pWindow;
         bool                        m_running;
         LayerStack                  m_layerStack;
+        ImGuiLayer*                 m_pImGuiLayer;
 
         static Application*         ms_pInstance;
     };
