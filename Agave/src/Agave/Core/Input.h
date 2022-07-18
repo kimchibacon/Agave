@@ -21,7 +21,7 @@
 
 namespace Agave {
 
-    class AGAVE_API Input
+    class Input
     {
     public:
         ///=============================================================================

@@ -1,6 +1,6 @@
 ///=============================================================================
 /// ImGuiLayer.cpp
-/// Agave/ImGuiLayer
+/// Agave/ImGui
 ///
 /// Copyright (c) 2022 Joshua Palmer. All rights reserved.
 ///
@@ -20,8 +20,9 @@
 // Temporary
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_opengl3.h"
-#include <GLFW/glfw3.h>
 #include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
 
 namespace Agave {
 
@@ -103,7 +104,7 @@ namespace Agave {
     {
         ImGuiIO& io = ImGui::GetIO();
         Application& app = Application::Instance();
-        io.DisplaySize = ImVec2(app.GetWindow().GetWidth(), app.GetWindow().GetHeight());
+        io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());
 
         // Rendering
         ImGui::Render();

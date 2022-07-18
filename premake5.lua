@@ -25,9 +25,10 @@ workspace "Agave"
 
     project "Agave"
         location "Agave"
-        kind "SharedLib"
-        staticruntime "Off"
+        kind "StaticLib"
+        staticruntime "on"
         language "C++"
+        cppdialect "C++11"
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("obj/" .. outputdir .. "/%{prj.name}")
 
@@ -53,7 +54,6 @@ workspace "Agave"
         }
 
         filter "system:windows"
-            cppdialect "C++11"
             systemversion "latest"
 
             defines {
@@ -62,36 +62,30 @@ workspace "Agave"
                 "GLFW_INCLUDE_NONE"
             }
 
-            postbuildcommands {
-                -- Copy engine dll to Sandbox
-                ("{mkdir} ../bin/" .. outputdir .. "/Sandbox"),
-                ("{copy} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
-            }
-
         filter "configurations:Debug"
             defines { 
                 "AGAVE_DEBUG",
                 "AGAVE_ENABLE_ASSERTS"
             } 
-            symbols "On"
+            symbols "on"
             runtime "Debug"
-
 
         filter "configurations:Release"
             defines "AGAVE_RELEASE"
-            optimize "On"
+            optimize "on"
             runtime "Release"
 
         filter "configurations:Dist"
             defines "AGAVE_DIST"
-            optimize "On"
+            optimize "on"
             runtime "Release"
 
     project "Sandbox"
         location "Sandbox"
         kind "ConsoleApp"
-        staticruntime "Off"
+        staticruntime "on"
         language "C++"
+        cppdialect "C++11"
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("obj/" .. outputdir .. "/%{prj.name}")
 
@@ -111,7 +105,6 @@ workspace "Agave"
         }
 
         filter "system:windows"
-            cppdialect "C++11"
             systemversion "latest"
 
         defines {
@@ -123,15 +116,15 @@ workspace "Agave"
                 "AGAVE_DEBUG",
                 "AGAVE_ENABLE_ASSERTS"
             } 
-            symbols "On"
+            symbols "on"
             runtime "Debug"
 
         filter "configurations:Release"
             defines "AGAVE_RELEASE"
-            optimize "On"
+            optimize "on"
             runtime "Release"
 
         filter "configurations:Dist"
             defines "AGAVE_DIST"
-            optimize "On"
+            optimize "on"
             runtime "Release"

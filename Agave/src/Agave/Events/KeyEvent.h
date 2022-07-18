@@ -23,7 +23,7 @@ namespace Agave {
     ///=========================================================================
     /// KeyEvent base class
     ///=========================================================================
-    class AGAVE_API KeyEvent : public Event
+    class KeyEvent : public Event
     {
     public:
         Agave::KeyCode GetKeyCode() const { return m_keyCode; }
@@ -41,7 +41,7 @@ namespace Agave {
     ///=========================================================================
     /// KeyPressedEvent
     ///=========================================================================
-    class AGAVE_API KeyPressedEvent : public KeyEvent
+    class KeyPressedEvent : public KeyEvent
     {
     public:
         KeyPressedEvent(const Agave::KeyCode keyCode, const bool isRepeat = false)
@@ -67,7 +67,7 @@ namespace Agave {
     ///=========================================================================
     /// KeyReleasedEvent
     ///=========================================================================
-    class AGAVE_API KeyReleasedEvent : public KeyEvent
+    class KeyReleasedEvent : public KeyEvent
     {
     public:
         KeyReleasedEvent(const Agave::KeyCode keyCode)
@@ -87,7 +87,7 @@ namespace Agave {
     ///=========================================================================
     /// KeyTypedEvent
     ///=========================================================================
-    class AGAVE_API KeyTypedEvent : public KeyEvent
+    class KeyTypedEvent : public KeyEvent
     {
     public:
         KeyTypedEvent(const Agave::KeyCode keyCode)

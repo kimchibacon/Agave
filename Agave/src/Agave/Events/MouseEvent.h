@@ -23,7 +23,7 @@ namespace Agave {
     ///=========================================================================
     /// MouseMovedEvent
     ///=========================================================================
-    class AGAVE_API MouseMovedEvent : public Event
+    class MouseMovedEvent : public Event
     {
     public:
         MouseMovedEvent(const float x, const float y)
@@ -81,7 +81,7 @@ namespace Agave {
     ///=========================================================================
     /// MouseButtonEvent base class
     ///=========================================================================
-    class AGAVE_API MouseButtonEvent : public Event
+    class MouseButtonEvent : public Event
     {
     public:
         Agave::MouseButtonCode GetMouseButton() const { return m_button; }
@@ -98,7 +98,7 @@ namespace Agave {
     ///=========================================================================
     /// MouseButtonPressedEvent
     ///=========================================================================
-    class AGAVE_API MouseButtonPressedEvent : public MouseButtonEvent
+    class MouseButtonPressedEvent : public MouseButtonEvent
     {
     public:
         MouseButtonPressedEvent(const Agave::MouseButtonCode button)
@@ -118,7 +118,7 @@ namespace Agave {
     ///=========================================================================
     /// MouseButtonReleasedEvent
     ///=========================================================================
-    class AGAVE_API MouseButtonReleasedEvent : public MouseButtonEvent
+    class MouseButtonReleasedEvent : public MouseButtonEvent
     {
     public:
         MouseButtonReleasedEvent(Agave::MouseButtonCode button)

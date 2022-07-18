@@ -22,7 +22,7 @@ namespace Agave {
     ///=========================================================================
     /// WindowResizeEvent
     ///=========================================================================
-    class AGAVE_API WindowResizedEvent : public Event
+    class WindowResizedEvent : public Event
     {
     public:
         WindowResizedEvent(const u32 width, const u32 height)
@@ -51,7 +51,7 @@ namespace Agave {
     ///=========================================================================
     /// WindowResizeEvent
     ///=========================================================================
-    class AGAVE_API WindowClosedEvent : public Event
+    class WindowClosedEvent : public Event
     {
     public:
         WindowClosedEvent() {}

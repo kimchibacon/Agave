@@ -1,6 +1,6 @@
 ///=============================================================================
 /// ImGuiLayer.h
-/// Agave/ImGuiLayer
+/// Agave/ImGui
 ///
 /// Copyright (c) 2022 Joshua Palmer. All rights reserved.
 ///
@@ -19,7 +19,7 @@
 #include "Agave/Events/ApplicationEvent.h"
 
 namespace Agave {
-    class AGAVE_API ImGuiLayer : public Layer
+    class ImGuiLayer : public Layer
     {
     public:
         ///=====================================================================
