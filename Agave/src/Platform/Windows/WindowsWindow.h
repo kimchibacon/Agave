@@ -11,11 +11,17 @@
 #define AGAVE_WINDOWS_WINDOW_H
 
 ///=============================================================================
+/// Forward Declarations
+///=============================================================================
+class RenderContext;
+struct GLFWwindow;
+
+///=============================================================================
 /// Includes
 ///=============================================================================
 #include "windows.h"
 #include "Agave/Core/Window.h"
-#include <GLFW/glfw3.h>
+#include "Agave/Render/RenderContext.h"
 
 namespace Agave {
 
@@ -75,6 +81,7 @@ namespace Agave {
         ///=====================================================================
         GLFWwindow* m_pWindow;
         WindowData m_data;
+        RenderContext* m_pContext;
     };
 }
 

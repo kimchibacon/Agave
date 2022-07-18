@@ -17,7 +17,8 @@
 #include "Agave/Events/ApplicationEvent.h"
 #include "Agave/Events/KeyEvent.h"
 #include "Agave/Events/MouseEvent.h"
-#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
+#include <GLFW/glfw3.h>
 
 namespace Agave {
 
@@ -72,9 +73,9 @@ namespace Agave {
         }
 
         m_pWindow = glfwCreateWindow((s32)props.m_width, (s32)props.m_height, props.m_title.c_str(), nullptr, nullptr);
-        glfwMakeContextCurrent(m_pWindow);
-        int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-        AGAVE_CORE_ASSERT(status);
+        m_pContext = new OpenGLContext(m_pWindow);
+        m_pContext->Init();
+
         glfwSetWindowUserPointer(m_pWindow, &m_data);
         SetVSync(true);
 
@@ -189,10 +190,7 @@ namespace Agave {
     void WindowsWindow::OnUpdate()
     {
         glfwPollEvents();
-        glfwSwapBuffers(m_pWindow);
-
-        glClearColor(0, 0, 0, 1);
-        glClear(GL_COLOR_BUFFER_BIT);
+        m_pContext->SwapBuffers();
     }
 
     ///=========================================================================
