@@ -17,6 +17,8 @@
 
 namespace Agave {
 
+    ///=============================================================================
+    ///=============================================================================
     VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
     {
         // Determine which renderer implementation we're currently using.

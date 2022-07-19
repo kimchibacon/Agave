@@ -18,12 +18,16 @@
 
 namespace Agave {
 
+    ///=============================================================================
+    ///=============================================================================
     OpenGLContext::OpenGLContext(GLFWwindow* pWindowHandle)
         : m_pWindowHandle(pWindowHandle)
     {
         AGAVE_CORE_ASSERT(m_pWindowHandle != nullptr);
     }
 
+    ///=============================================================================
+    ///=============================================================================
     void OpenGLContext::Init()
     {
         glfwMakeContextCurrent(m_pWindowHandle);
@@ -31,6 +35,8 @@ namespace Agave {
         AGAVE_CORE_ASSERT(status);
     }
 
+    ///=============================================================================
+    ///=============================================================================
     void OpenGLContext::SwapBuffers()
     {
         glfwSwapBuffers(m_pWindowHandle);
