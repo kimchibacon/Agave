@@ -36,24 +36,92 @@ namespace Agave {
         m_pImGuiLayer = new ImGuiLayer();
         PushOverlay(m_pImGuiLayer);
 
-        glGenVertexArrays(1, &m_vertexArray);
-        glBindVertexArray(m_vertexArray);
+        // TRIANGLE
+        m_pTriangleVA.reset(VertexArray::Create());
 
-        float vertices[3 * 3]{
-            -0.5f, -0.5f, 0.0f,
-            0.5f, -0.5f, 0.0f,
-            0.0f, 0.5f, 0.0f
+        float vertices[3 * 7]{
+            -0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
+            0.5f, -0.5f, 0.0f, 0.2f, 0.2f, 0.8f, 1.0f,
+            0.0f, 0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
         };
 
-        m_pVertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
+        std::shared_ptr<VertexBuffer> triangleVB;
+        triangleVB.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 
-        glEnableVertexAttribArray(0);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, (3 * sizeof(float)), nullptr);
+        BufferLayout layout = {
+            {ShaderDataType::Float3, "a_Position"},
+            {ShaderDataType::Float4, "a_Color"}
+        };
+        triangleVB->SetLayout(layout);
+
+        m_pTriangleVA->AddVertexBuffer(triangleVB);
 
         uint32_t indices[3] = { 0, 1, 2 };
-        m_pIndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+        std::shared_ptr<IndexBuffer> triangleIB;
+        triangleIB.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+        m_pTriangleVA->SetIndexBuffer(triangleIB);
 
         std::string vertexSrc = R"(
+            #version 330 core
+            
+            layout(location = 0) in vec3 a_Position;
+            layout(location = 1) in vec4 a_Color;
+            
+            out vec3 v_Position;
+            out vec4 v_Color;
+
+            void main()
+            {
+                v_Position = a_Position + 0.5;
+                v_Color = a_Color;
+                gl_Position = vec4(a_Position, 1.0);
+            }
+        )";
+
+        std::string fragmentSrc = R"(
+            #version 330 core
+            
+            layout(location = 0) out vec4 color;
+
+            in vec3 v_Position;
+            in vec4 v_Color;
+
+            void main()
+            {
+                color = vec4((v_Position * 0.5 + 0.5), 1.0);
+                color = v_Color;
+            }
+        )";
+
+        m_pTriangleShader.reset(Shader::Create(vertexSrc, fragmentSrc));
+
+
+        // SQUARE 
+        m_pSquareVA.reset(VertexArray::Create());
+
+        float squareVertices[3 * 4]{
+            -0.75f, -0.75f, 0.0f,
+            0.75f, -0.75f, 0.0f,
+            0.75f, 0.75f, 0.0f,
+            -0.75f, 0.75f, 0.0f
+        };
+
+        std::shared_ptr<VertexBuffer> squareVB;
+        squareVB.reset(VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+
+        BufferLayout squareLayout = {
+            {ShaderDataType::Float3, "a_Position"}
+        };
+
+        squareVB->SetLayout(squareLayout);
+        m_pSquareVA->AddVertexBuffer(squareVB);
+
+        uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
+        std::shared_ptr<IndexBuffer> squareIB;
+        squareIB.reset(IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+        m_pSquareVA->SetIndexBuffer(squareIB);
+
+        std::string vertex2Src = R"(
             #version 330 core
             
             layout(location = 0) in vec3 a_Position;
@@ -67,7 +135,7 @@ namespace Agave {
             }
         )";
 
-        std::string fragmentSrc = R"(
+        std::string fragment2Src = R"(
             #version 330 core
             
             layout(location = 0) out vec4 color;
@@ -76,11 +144,11 @@ namespace Agave {
 
             void main()
             {
-                color = vec4(v_Position * 0.5 + 0.5, 1.0);
+                color = vec4(0.2, 0.2, 0.8, 1.0);
             }
         )";
 
-        m_pShader.reset(Shader::Create(vertexSrc, fragmentSrc));
+        m_pSquareShader2.reset(Shader::Create(vertex2Src, fragment2Src));
     }
 
     ///=========================================================================
@@ -94,12 +162,17 @@ namespace Agave {
     {
         while (m_running)
         {
-            m_pShader->Bind();
-            {
-                glBindVertexArray(m_vertexArray);
-                glDrawElements(GL_TRIANGLES, m_pIndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
-            }
-            m_pShader->Unbind();
+            m_pSquareShader2->Bind();
+            m_pSquareVA->Bind();
+            glDrawElements(GL_TRIANGLES, m_pSquareVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+            m_pSquareVA->Unbind();
+            m_pSquareShader2->Unbind();
+
+            m_pTriangleShader->Bind();
+            m_pTriangleVA->Bind();
+            glDrawElements(GL_TRIANGLES, m_pTriangleVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+            m_pTriangleVA->Unbind();
+            m_pTriangleShader->Unbind();
 
             m_layerStack.OnUpdate();
 

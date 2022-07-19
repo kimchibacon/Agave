@@ -21,6 +21,8 @@
 #include "Agave/Render/VertexBuffer.h"
 #include "Agave/Render/IndexBuffer.h"
 #include "Agave/Render/Shader.h"
+#include "Agave/Render/BufferLayout.h"
+#include "Agave/Render/VertexArray.h"
 
 namespace Agave {
 
@@ -62,10 +64,11 @@ namespace Agave {
         LayerStack                      m_layerStack;
         ImGuiLayer*                     m_pImGuiLayer;
 
-        uint32_t                        m_vertexArray;
-        std::unique_ptr<Shader>         m_pShader;
-        std::unique_ptr<VertexBuffer>   m_pVertexBuffer;
-        std::unique_ptr<IndexBuffer>    m_pIndexBuffer;
+        std::shared_ptr<Shader>         m_pTriangleShader;
+        std::shared_ptr<VertexArray>    m_pTriangleVA;
+
+        std::shared_ptr<Shader>         m_pSquareShader2;
+        std::shared_ptr<VertexArray>    m_pSquareVA;
 
         static Application*             ms_pInstance;
     };
