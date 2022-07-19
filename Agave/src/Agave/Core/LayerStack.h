@@ -46,7 +46,7 @@ namespace Agave {
 
     private:
         std::vector<Layer*> m_layers;
-        u32 m_layerInsertIndex = 0;
+        uint32_t m_layerInsertIndex = 0;
     };
 }
 

@@ -18,6 +18,7 @@ struct GLFWwindow;
 ///=============================================================================
 /// Includes
 ///=============================================================================
+#include "Agave/Core/Base.h"
 #include "Agave/Render/RenderContext.h"
 
 namespace Agave {

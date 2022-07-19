@@ -13,6 +13,7 @@
 ///=============================================================================
 /// Includes
 ///=============================================================================
+#include "Agave/Core/Base.h"
 #include "Agave/Core/Input.h"
 #include <unordered_map>
 
@@ -24,10 +25,10 @@ namespace Agave {
         ///=====================================================================
         /// Public Methods
         ///=====================================================================
-        static s32 AgaveKeyToGlfwKey(Agave::KeyCode keycode) { return m_agaveToGlfwKeyCodeMap[keycode]; }
-        static Agave::KeyCode GlfwKeyToAgaveKey(s32 keycode) { return m_glfwToAgaveKeyCodeMap[keycode]; }
-        static s32 AgaveMoustButtonToGlfwMouseButton(Agave::MouseButtonCode button) { return m_agaveToGlfwMouseButtonCodeMap[button]; }
-        static Agave::MouseButtonCode GlfwMouseButtonToAgaveMouseButton(s32 button) { return m_glfwToAgaveMouseButtonCodeMap[button]; }
+        static int AgaveKeyToGlfwKey(Agave::KeyCode keycode) { return m_agaveToGlfwKeyCodeMap[keycode]; }
+        static Agave::KeyCode GlfwKeyToAgaveKey(int keycode) { return m_glfwToAgaveKeyCodeMap[keycode]; }
+        static int AgaveMoustButtonToGlfwMouseButton(Agave::MouseButtonCode button) { return m_agaveToGlfwMouseButtonCodeMap[button]; }
+        static Agave::MouseButtonCode GlfwMouseButtonToAgaveMouseButton(int button) { return m_glfwToAgaveMouseButtonCodeMap[button]; }
 
     protected:
         ///=====================================================================
@@ -43,10 +44,10 @@ namespace Agave {
         ///=====================================================================
         /// Private Members
         ///=====================================================================
-        static std::unordered_map<Agave::KeyCode, s32> m_agaveToGlfwKeyCodeMap;
-        static std::unordered_map<s32, Agave::KeyCode> m_glfwToAgaveKeyCodeMap;
-        static std::unordered_map<Agave::MouseButtonCode, s32> m_agaveToGlfwMouseButtonCodeMap;
-        static std::unordered_map<s32, Agave::MouseButtonCode> m_glfwToAgaveMouseButtonCodeMap;
+        static std::unordered_map<Agave::KeyCode, int> m_agaveToGlfwKeyCodeMap;
+        static std::unordered_map<int, Agave::KeyCode> m_glfwToAgaveKeyCodeMap;
+        static std::unordered_map<Agave::MouseButtonCode, int> m_agaveToGlfwMouseButtonCodeMap;
+        static std::unordered_map<int, Agave::MouseButtonCode> m_glfwToAgaveMouseButtonCodeMap;
     };
 }
 

@@ -13,6 +13,7 @@
 ///=============================================================================
 /// Includes
 ///=============================================================================
+#include "Agave/Core/Base.h"
 #include "Agave/Core/Layer.h"
 #include "Agave/Events/MouseEvent.h"
 #include "Agave/Events/KeyEvent.h"

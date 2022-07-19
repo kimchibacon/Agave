@@ -26,10 +26,10 @@ namespace Agave {
     ///=========================================================================
     bool WindowsInput::IsKeyPressedImpl(Agave::KeyCode keycode)
     {
-        s32 glfwKeycode = AgaveKeyToGlfwKey(keycode);
+        int glfwKeycode = AgaveKeyToGlfwKey(keycode);
 
         auto pWindow = static_cast<GLFWwindow*>(Application::Instance().GetWindow().GetNativeWindow());
-        s32 state = glfwGetKey(pWindow, glfwKeycode);
+        int state = glfwGetKey(pWindow, glfwKeycode);
 
         return (state == GLFW_PRESS) || (state == GLFW_REPEAT);
     }
@@ -39,7 +39,7 @@ namespace Agave {
     bool WindowsInput::IsMouseButtonPressedImpl(Agave::MouseButtonCode button)
     {
         auto pWindow = static_cast<GLFWwindow*>(Application::Instance().GetWindow().GetNativeWindow());
-        s32 state = glfwGetMouseButton(pWindow, AgaveMoustButtonToGlfwMouseButton(button));
+        int state = glfwGetMouseButton(pWindow, AgaveMoustButtonToGlfwMouseButton(button));
         
         return (state == GLFW_PRESS);
     }
@@ -84,7 +84,7 @@ namespace Agave {
     ///=========================================================================
     /// Key Code and Mouse Button maps
     ///=========================================================================
-    std::unordered_map<Agave::KeyCode, s32> WindowsInput::m_agaveToGlfwKeyCodeMap = {
+    std::unordered_map<Agave::KeyCode, int> WindowsInput::m_agaveToGlfwKeyCodeMap = {
         {Agave::KeyCode::Space, GLFW_KEY_SPACE},
         {Agave::KeyCode::Apostrophe, GLFW_KEY_APOSTROPHE},
         {Agave::KeyCode::Comma, GLFW_KEY_COMMA},
@@ -207,7 +207,7 @@ namespace Agave {
         {Agave::KeyCode::Menu, GLFW_KEY_MENU}
     };
 
-    std::unordered_map<s32, Agave::KeyCode> WindowsInput::m_glfwToAgaveKeyCodeMap = {
+    std::unordered_map<int, Agave::KeyCode> WindowsInput::m_glfwToAgaveKeyCodeMap = {
         {GLFW_KEY_SPACE, Agave::KeyCode::Space},
         {GLFW_KEY_APOSTROPHE, Agave::KeyCode::Apostrophe},
         {GLFW_KEY_COMMA, Agave::KeyCode::Comma},
@@ -330,7 +330,7 @@ namespace Agave {
         {GLFW_KEY_MENU, Agave::KeyCode::Menu}
     };
 
-    std::unordered_map<Agave::MouseButtonCode, s32> WindowsInput::m_agaveToGlfwMouseButtonCodeMap = {
+    std::unordered_map<Agave::MouseButtonCode, int> WindowsInput::m_agaveToGlfwMouseButtonCodeMap = {
         {Agave::MouseButtonCode::Button1, GLFW_MOUSE_BUTTON_1},
         {Agave::MouseButtonCode::Button2, GLFW_MOUSE_BUTTON_2},
         {Agave::MouseButtonCode::Button3, GLFW_MOUSE_BUTTON_3},
@@ -341,7 +341,7 @@ namespace Agave {
         {Agave::MouseButtonCode::Button8, GLFW_MOUSE_BUTTON_8}
     };
 
-    std::unordered_map<s32, Agave::MouseButtonCode> WindowsInput::m_glfwToAgaveMouseButtonCodeMap = {
+    std::unordered_map<int, Agave::MouseButtonCode> WindowsInput::m_glfwToAgaveMouseButtonCodeMap = {
         {GLFW_MOUSE_BUTTON_1, Agave::MouseButtonCode::Button1},
         {GLFW_MOUSE_BUTTON_2, Agave::MouseButtonCode::Button2},
         {GLFW_MOUSE_BUTTON_3, Agave::MouseButtonCode::Button3},

@@ -25,13 +25,13 @@ namespace Agave {
     class WindowResizedEvent : public Event
     {
     public:
-        WindowResizedEvent(const u32 width, const u32 height)
+        WindowResizedEvent(const uint32_t width, const uint32_t height)
             : m_width(width)
             , m_height(height)
         {}
 
-        u32 GetWidth() const { return m_width; }
-        u32 GetHeight() const { return m_height; }
+        uint32_t GetWidth() const { return m_width; }
+        uint32_t GetHeight() const { return m_height; }
 
         std::string ToString() const override
         {
@@ -44,8 +44,8 @@ namespace Agave {
         EVENT_CLASS_CATEGORY(EventCategoryApplication)
 
     private:
-        u32 m_width;
-        u32 m_height;
+        uint32_t m_width;
+        uint32_t m_height;
     };
 
     ///=========================================================================

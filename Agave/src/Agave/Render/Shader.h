@@ -1,7 +1,19 @@
+///=============================================================================
+/// Shader.cpp
+/// Agave/Render
+///
+/// Copyright (c) 2022 Joshua Palmer. All rights reserved.
+///
+/// Shader abstraction
+///=============================================================================
+
 #ifndef AGAVE_SHADER_H
 #define AGAVE_SHADER_H
 
-#include <Agave/Core/Base.h>
+///=============================================================================
+/// Includes
+///=============================================================================
+#include "Agave/Core/Base.h"
 #include <string>
 
 namespace Agave {
@@ -9,14 +21,12 @@ namespace Agave {
     class Shader
     {
     public:
-        Shader(const std::string& vertexSrc, const std::string& fragmentSrc);
-        ~Shader();
+        virtual ~Shader() {}
 
-        void Bind() const;
-        void Unbind() const;
+        virtual void Bind() const = 0;
+        virtual void Unbind() const = 0;
 
-    private:
-        u32 m_renderId;
+        static Shader* Create(const std::string& vertexSrc, const std::string& fragmentSrc);
     };
 }
 

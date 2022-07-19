@@ -108,7 +108,7 @@ namespace Agave {
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "MouseButtonPressedEvent: " << (s32)m_button;
+            ss << "MouseButtonPressedEvent: " << (int)m_button;
             return ss.str();
         }
 
@@ -128,7 +128,7 @@ namespace Agave {
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "MouseButtonReleasedEvent: " << (s32)m_button;
+            ss << "MouseButtonReleasedEvent: " << (int)m_button;
             return ss.str();
         }
 

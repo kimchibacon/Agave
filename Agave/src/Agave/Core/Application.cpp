@@ -11,7 +11,6 @@
 /// Includes
 ///=============================================================================
 #include "Agave/Core/Application.h"
-#include "Agave/Core/Log.h"
 #include "Agave/Core/Delegate.h"
 #include "Agave/Core/Assert.h"
 #include <glad/glad.h>
@@ -51,8 +50,8 @@ namespace Agave {
         glEnableVertexAttribArray(0);
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, (3 * sizeof(float)), nullptr);
 
-        u32 indices[3] = { 0, 1, 2 };
-        m_pIndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(u32)));
+        uint32_t indices[3] = { 0, 1, 2 };
+        m_pIndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 
         std::string vertexSrc = R"(
             #version 330 core
@@ -81,7 +80,7 @@ namespace Agave {
             }
         )";
 
-        m_pShader = std::make_unique<Shader>(vertexSrc, fragmentSrc);
+        m_pShader.reset(Shader::Create(vertexSrc, fragmentSrc));
     }
 
     ///=========================================================================

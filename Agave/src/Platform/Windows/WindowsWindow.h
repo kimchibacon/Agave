@@ -20,6 +20,7 @@ struct GLFWwindow;
 /// Includes
 ///=============================================================================
 #include "windows.h"
+#include "Agave/Core/Base.h"
 #include "Agave/Core/Window.h"
 #include "Agave/Render/RenderContext.h"
 
@@ -36,8 +37,8 @@ namespace Agave {
         struct WindowData
         {
             std::string m_title;
-            u32 m_width;
-            u32 m_height;
+            uint32_t m_width;
+            uint32_t m_height;
             bool m_isVSync;
             Gallant::Delegate<void (Event&)> m_eventCallback;
 
@@ -60,8 +61,8 @@ namespace Agave {
         /// Interface
         ///=====================================================================
         virtual void OnUpdate() override;
-        virtual u32 GetWidth() const override { return m_data.m_width; }
-        virtual u32 GetHeight() const override { return m_data.m_height; }
+        virtual uint32_t GetWidth() const override { return m_data.m_width; }
+        virtual uint32_t GetHeight() const override { return m_data.m_height; }
         virtual void* GetNativeWindow() const override { return m_pWindow; };
         virtual void SetEventCallback(Gallant::Delegate1<Event&> callback) override { m_data.m_eventCallback = callback; }
         virtual void SetVSync(bool enabled) override;

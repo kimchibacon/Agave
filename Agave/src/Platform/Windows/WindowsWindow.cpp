@@ -12,8 +12,8 @@
 ///=============================================================================
 #include "Platform/Windows/WindowsWindow.h"
 #include "Platform/Windows/WindowsInput.h"
-#include "Agave/Core/Log.h"
 #include "Agave/Core/Assert.h"
+#include "Agave/Core/Log.h"
 #include "Agave/Events/ApplicationEvent.h"
 #include "Agave/Events/KeyEvent.h"
 #include "Agave/Events/MouseEvent.h"
@@ -65,14 +65,14 @@ namespace Agave {
 
         if (!s_GLFWInitialized)
         {
-            s32 success = glfwInit();
+            int success = glfwInit();
             AGAVE_CORE_ASSERT(success == GLFW_TRUE);
             glfwSetErrorCallback(GLFWErrorCallback);
 
             s_GLFWInitialized = true;
         }
 
-        m_pWindow = glfwCreateWindow((s32)props.m_width, (s32)props.m_height, props.m_title.c_str(), nullptr, nullptr);
+        m_pWindow = glfwCreateWindow((int)props.m_width, (int)props.m_height, props.m_title.c_str(), nullptr, nullptr);
         m_pContext = new OpenGLContext(m_pWindow);
         m_pContext->Init();
 
@@ -131,7 +131,7 @@ namespace Agave {
                 }
             });
 
-        glfwSetCharCallback(m_pWindow, [](GLFWwindow* pWindow, u32 keycode)
+        glfwSetCharCallback(m_pWindow, [](GLFWwindow* pWindow, uint32_t keycode)
             {
                 WindowData* pData = ( WindowData* )glfwGetWindowUserPointer(pWindow);
                 KeyTypedEvent event(WindowsInput::GlfwKeyToAgaveKey(keycode));

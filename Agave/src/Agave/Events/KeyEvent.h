@@ -54,7 +54,7 @@ namespace Agave {
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "KeyPressedEvent: " << (s32)m_keyCode << " (repeat=" << m_isRepeat << ")";
+            ss << "KeyPressedEvent: " << (int)m_keyCode << " (repeat=" << m_isRepeat << ")";
             return ss.str();
         }
 
@@ -77,7 +77,7 @@ namespace Agave {
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "KeyReleasedEvent: " << (s32)m_keyCode;
+            ss << "KeyReleasedEvent: " << (int)m_keyCode;
             return ss.str();
         }
 
@@ -97,7 +97,7 @@ namespace Agave {
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "KeyTypedEvent: " << (s32)m_keyCode;
+            ss << "KeyTypedEvent: " << (int)m_keyCode;
             return ss.str();
         }
 

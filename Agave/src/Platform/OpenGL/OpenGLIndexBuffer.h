@@ -13,6 +13,7 @@
 ///=============================================================================
 /// Includes
 ///=============================================================================
+#include "Agave/Core/Base.h"
 #include "Agave/Render/IndexBuffer.h"
 
 namespace Agave {
@@ -20,16 +21,16 @@ namespace Agave {
     class OpenGLIndexBuffer : public IndexBuffer
     {
     public:
-        OpenGLIndexBuffer(u32* indices, u32 count);
+        OpenGLIndexBuffer(uint32_t* indices, uint32_t count);
         virtual ~OpenGLIndexBuffer() override;
 
         virtual void Bind() const override;
         virtual void Unbind() const override;
-        virtual u32 GetCount() const override { return m_count; }
+        virtual uint32_t GetCount() const override { return m_count; }
 
     private:
-        u32 m_renderId;
-        u32 m_count;
+        uint32_t m_renderId;
+        uint32_t m_count;
     };
 }
 

@@ -11,7 +11,6 @@
 /// Includes
 ///=============================================================================
 #include "Agave/ImGui/ImGuiLayer.h"
-#include "Agave/Core/AgaveTypes.h"
 #include "Agave/Core/Application.h"
 #include "Agave/Core/KeyCodes.h"
 #include "Agave/Events/Event.h"

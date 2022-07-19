@@ -17,7 +17,7 @@ namespace Agave {
 
     ///=========================================================================
     ///=========================================================================
-    OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, u32 size)        
+    OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size)
     {
         glCreateBuffers(1, &m_renderId);
         glBindBuffer(GL_ARRAY_BUFFER, m_renderId);

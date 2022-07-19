@@ -25,12 +25,12 @@ namespace Agave {
     struct WindowProps
     {
         std::string m_title;
-        u32 m_width;
-        u32 m_height;
+        uint32_t m_width;
+        uint32_t m_height;
 
         WindowProps(const std::string& title = "Agave Engine",
-                    u32 width = 1280,
-                    u32 height = 720)
+            uint32_t width = 1280,
+            uint32_t height = 720)
             : m_title(title)
             , m_width(width)
             , m_height(height)
@@ -46,8 +46,8 @@ namespace Agave {
         virtual ~Window() {}
 
         virtual void OnUpdate() = 0;
-        virtual u32 GetWidth() const = 0;
-        virtual u32 GetHeight() const = 0;
+        virtual uint32_t GetWidth() const = 0;
+        virtual uint32_t GetHeight() const = 0;
         virtual void* GetNativeWindow() const = 0;
 
         // Window attributes

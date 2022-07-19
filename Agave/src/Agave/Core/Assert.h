@@ -10,6 +10,7 @@
 #ifndef AGAVE_ASSERT_H
 #define AGAVE_ASSERT_H
 
+#include "Agave/Core/Base.h"
 #include "Agave/Core/Log.h"
 
 #if AGAVE_ENABLE_ASSERTS

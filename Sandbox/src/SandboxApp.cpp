@@ -10,6 +10,8 @@
 ///=============================================================================
 /// Includes
 ///=============================================================================
+#include "Agave/Core/Base.h"
+#include "Agave/Core/Log.h"
 #include <Agave/Core/EntryPoint.h>
 #include <Agave/Core/Application.h>
 #include <Agave/Core/Layer.h>

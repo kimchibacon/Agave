@@ -12,11 +12,12 @@
 ///=============================================================================
 #include "Agave/Render/VertexBuffer.h"
 #include "Agave/Render/Renderer.h"
+#include "Agave/Core/Assert.h"
 #include "Platform/OpenGL/OpenGLVertexBuffer.h"
 
 namespace Agave {
 
-    VertexBuffer* VertexBuffer::Create(float* vertices, u32 size)
+    VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
     {
         // Determine which renderer implementation we're currently using.
         switch (Renderer::GetAPI())

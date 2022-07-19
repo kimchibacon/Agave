@@ -57,17 +57,17 @@ namespace Agave {
         ///=====================================================================
         /// Private Fields
         ///=====================================================================
-        std::unique_ptr<Window>     m_pWindow;
-        bool                        m_running;
-        LayerStack                  m_layerStack;
-        ImGuiLayer*                 m_pImGuiLayer;
+        std::unique_ptr<Window>         m_pWindow;
+        bool                            m_running;
+        LayerStack                      m_layerStack;
+        ImGuiLayer*                     m_pImGuiLayer;
 
-        u32                         m_vertexArray;
-        std::unique_ptr<Shader>     m_pShader;
-        std::unique_ptr<VertexBuffer> m_pVertexBuffer;
-        std::unique_ptr<IndexBuffer>  m_pIndexBuffer;
+        uint32_t                        m_vertexArray;
+        std::unique_ptr<Shader>         m_pShader;
+        std::unique_ptr<VertexBuffer>   m_pVertexBuffer;
+        std::unique_ptr<IndexBuffer>    m_pIndexBuffer;
 
-        static Application*         ms_pInstance;
+        static Application*             ms_pInstance;
     };
 
     // Defined by client

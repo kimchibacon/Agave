@@ -10,6 +10,11 @@
 #ifndef AGAVE_MOUSE_BUTTON_CODES_H
 #define AGAVE_MOUSE_BUTTON_CODES_H
 
+///=============================================================================
+/// Includes
+///=============================================================================
+#include "Agave/Core/Base.h"
+
 namespace Agave {
     enum class MouseButtonCode
     {

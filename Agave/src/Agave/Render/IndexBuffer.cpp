@@ -12,13 +12,14 @@
 ///=============================================================================
 #include "Agave/Render/IndexBuffer.h"
 #include "Agave/Render/Renderer.h"
+#include "Agave/Core/Assert.h"
 #include "Platform/OpenGL/OpenGLIndexBuffer.h"
 
 namespace Agave {
 
     ///=============================================================================
     ///=============================================================================
-    IndexBuffer* IndexBuffer::Create(u32* indices, u32 count)
+    IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t count)
     {
         // Determine which renderer implementation we're currently using.
         switch(Renderer::GetAPI())

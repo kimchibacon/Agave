@@ -13,12 +13,12 @@ namespace Agave {
 
     ///=========================================================================
     ///=========================================================================
-    OpenGLIndexBuffer::OpenGLIndexBuffer(u32* indices, u32 count)
+    OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t* indices, uint32_t count)
         : m_count(count)
     {
         glCreateBuffers(1, &m_renderId);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_renderId);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(u32), indices, GL_STATIC_DRAW);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(uint32_t), indices, GL_STATIC_DRAW);
     }
 
     ///=========================================================================
