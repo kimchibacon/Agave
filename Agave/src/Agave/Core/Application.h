@@ -18,6 +18,7 @@
 #include "Agave/Events/ApplicationEvent.h"
 #include "Agave/Core/LayerStack.h"
 #include "Agave/ImGui/ImGuiLayer.h"
+#include "Agave/Render/Shader.h"
 
 namespace Agave {
 
@@ -58,6 +59,11 @@ namespace Agave {
         bool                        m_running;
         LayerStack                  m_layerStack;
         ImGuiLayer*                 m_pImGuiLayer;
+
+        u32                         m_vertexArray;
+        u32                         m_vertexBuffer;
+        u32                         m_indexBuffer;
+        std::unique_ptr<Shader>     m_pShader;
 
         static Application*         ms_pInstance;
     };
