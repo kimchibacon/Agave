@@ -11,11 +11,13 @@
 
 namespace Agave {
 
-    ///=========================================================================
-    ///=========================================================================
-    void Renderer::BeginScene()
-    {
+    Renderer::SceneData* Renderer::ms_pSceneData = new Renderer::SceneData;
 
+    ///=========================================================================
+    ///=========================================================================
+    void Renderer::BeginScene(OrthographicCamera& camera)
+    {
+        ms_pSceneData->m_viewProjectionMatrix = camera.GetViewProjectionMatrix();
     }
 
     ///=========================================================================
@@ -27,8 +29,10 @@ namespace Agave {
 
     ///=========================================================================
     ///=========================================================================
-    void Renderer::Submit(const std::shared_ptr<VertexArray>& vertexArray)
+    void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray)
     {
+        shader->Bind();
+        shader->UploadUniformMat4("u_ViewProjection", ms_pSceneData->m_viewProjectionMatrix);
         vertexArray->Bind();
         RenderCommand::DrawIndexed(vertexArray);
     }

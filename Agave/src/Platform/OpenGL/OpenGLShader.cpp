@@ -14,6 +14,7 @@
 #include "Agave/Core/Assert.h"
 #include "Agave/Core/Log.h"
 #include <glad/glad.h>
+#include <glm/gtc/type_ptr.hpp>
 #include <vector>
 
 namespace Agave {
@@ -154,5 +155,13 @@ namespace Agave {
     void OpenGLShader::Unbind() const
     {
         glUseProgram(0);
+    }
+
+    ///=============================================================================
+    ///=============================================================================
+    void OpenGLShader::UploadUniformMat4(const std::string& name, const glm::mat4& matrix)
+    {
+        GLint location = glGetUniformLocation(m_renderId, name.c_str());
+        glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
     }
 }

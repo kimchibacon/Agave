@@ -18,6 +18,7 @@
 #include <Agave/Core/Input.h>
 
 #include <Agave/Render/Renderer.h>
+#include <Agave/Render/OrthographicCamera.h>
 
 class ExampleLayer : public Agave::Layer
 {
@@ -41,6 +42,11 @@ class RenderLayer : public Agave::Layer
 public:
     RenderLayer()
         : Layer("Render")
+        , m_camera(-1.6f, 1.6f, -0.9f, 0.9f)
+        , m_cameraPosition(m_camera.GetPosition())
+        , m_cameraSpeed(0.1f)
+        , m_cameraRotation(0.0f)
+        , m_cameraRotationSpeed(2.0f)
     {
         // TRIANGLE
         m_pTriangleVA.reset(Agave::VertexArray::Create());
@@ -72,6 +78,8 @@ public:
             
             layout(location = 0) in vec3 a_Position;
             layout(location = 1) in vec4 a_Color;
+
+            uniform mat4 u_ViewProjection;
             
             out vec3 v_Position;
             out vec4 v_Color;
@@ -80,7 +88,7 @@ public:
             {
                 v_Position = a_Position + 0.5;
                 v_Color = a_Color;
-                gl_Position = vec4(a_Position, 1.0);
+                gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
             }
         )";
 
@@ -131,13 +139,15 @@ public:
             #version 330 core
             
             layout(location = 0) in vec3 a_Position;
-            
+
+            uniform mat4 u_ViewProjection;            
+
             out vec3 v_Position;
 
             void main()
             {
                 v_Position = a_Position + 0.5;
-                gl_Position = vec4(a_Position, 1.0);
+                gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
             }
         )";
 
@@ -159,16 +169,43 @@ public:
 
     virtual void OnUpdate() override
     {
+        if (Agave::Input::IsKeyPressed(Agave::KeyCode::LeftArrow))
+        {
+            m_cameraPosition.x -= m_cameraSpeed;
+        }
+        else if (Agave::Input::IsKeyPressed(Agave::KeyCode::RightArrow))
+        {
+            m_cameraPosition.x += m_cameraSpeed;
+        }
+
+        if (Agave::Input::IsKeyPressed(Agave::KeyCode::UpArrow))
+        {
+            m_cameraPosition.y += m_cameraSpeed;
+        }
+        else if (Agave::Input::IsKeyPressed(Agave::KeyCode::DownArrow))
+        {
+            m_cameraPosition.y -= m_cameraSpeed;
+        }
+
+        if (Agave::Input::IsKeyPressed(Agave::KeyCode::A))
+        {
+            m_cameraRotation += m_cameraRotationSpeed;
+        }
+        else if (Agave::Input::IsKeyPressed(Agave::KeyCode::D))
+        {
+            m_cameraRotation -= m_cameraRotationSpeed;
+        }
+
         Agave::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
         Agave::RenderCommand::Clear();
 
-        Agave::Renderer::BeginScene();
-        {
-            m_pSquareShader->Bind();
-            Agave::Renderer::Submit(m_pSquareVA);
+        m_camera.SetPosition(m_cameraPosition);
+        m_camera.SetRotation(m_cameraRotation);
 
-            m_pTriangleShader->Bind();
-            Agave::Renderer::Submit(m_pTriangleVA);
+        Agave::Renderer::BeginScene(m_camera);
+        {
+            Agave::Renderer::Submit(m_pSquareShader, m_pSquareVA);
+            Agave::Renderer::Submit(m_pTriangleShader, m_pTriangleVA);
         }
         Agave::Renderer::EndScene();
     }
@@ -178,6 +215,12 @@ private:
     std::shared_ptr<Agave::VertexArray>    m_pTriangleVA;
     std::shared_ptr<Agave::Shader>         m_pSquareShader;
     std::shared_ptr<Agave::VertexArray>    m_pSquareVA;
+    Agave::OrthographicCamera m_camera;
+
+    glm::vec3 m_cameraPosition;
+    float m_cameraSpeed;
+    float m_cameraRotation;
+    float m_cameraRotationSpeed;
 };
 
 ///=============================================================================
