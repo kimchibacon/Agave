@@ -14,21 +14,23 @@
 /// Includes
 ///=============================================================================
 #include "Agave/Core/Base.h"
+#include "Agave/Render/RenderCommand.h"
+#include "Agave/Render/Shader.h"
+#include "Agave/Render/VertexBuffer.h"
+#include "Agave/Render/IndexBuffer.h"
+#include "Agave/Render/VertexArray.h"
+#include "Agave/Render/BufferLayout.h"
 
 namespace Agave {
-
-    enum class RenderAPI
-    {
-        None = 0, OpenGL = 1
-    };
 
     class Renderer
     {
     public:
-        static RenderAPI GetAPI() { return ms_renderAPI; }
+        static void BeginScene();
+        static void EndScene();
+        static void Submit(const std::shared_ptr<VertexArray>& vertexArray);
 
-    private:
-        static RenderAPI ms_renderAPI;
+        static RenderAPI::API GetAPI() { return RenderAPI::GetAPI(); }
     };
 }
 

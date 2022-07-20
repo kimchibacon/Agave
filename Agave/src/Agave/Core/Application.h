@@ -18,11 +18,6 @@
 #include "Agave/Events/ApplicationEvent.h"
 #include "Agave/Core/LayerStack.h"
 #include "Agave/ImGui/ImGuiLayer.h"
-#include "Agave/Render/VertexBuffer.h"
-#include "Agave/Render/IndexBuffer.h"
-#include "Agave/Render/Shader.h"
-#include "Agave/Render/BufferLayout.h"
-#include "Agave/Render/VertexArray.h"
 
 namespace Agave {
 
@@ -63,12 +58,6 @@ namespace Agave {
         bool                            m_running;
         LayerStack                      m_layerStack;
         ImGuiLayer*                     m_pImGuiLayer;
-
-        std::shared_ptr<Shader>         m_pTriangleShader;
-        std::shared_ptr<VertexArray>    m_pTriangleVA;
-
-        std::shared_ptr<Shader>         m_pSquareShader2;
-        std::shared_ptr<VertexArray>    m_pSquareVA;
 
         static Application*             ms_pInstance;
     };

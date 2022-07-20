@@ -24,10 +24,10 @@ namespace Agave {
         // Determine which renderer implementation we're currently using.
         switch (Renderer::GetAPI())
         {
-        case RenderAPI::None:
+        case RenderAPI::API::None:
             AGAVE_CORE_ASSERT(false);
             return nullptr;
-        case RenderAPI::OpenGL:
+        case RenderAPI::API::OpenGL:
             return new OpenGLVertexBuffer(vertices, size);
         }
 
