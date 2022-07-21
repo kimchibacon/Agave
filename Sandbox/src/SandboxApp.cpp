@@ -15,6 +15,7 @@
 #include <Agave/Core/EntryPoint.h>
 #include <Agave/Core/Application.h>
 #include <Agave/Core/Layer.h>
+#include <Agave/Core/Timestep.h>
 #include <Agave/Core/Input.h>
 
 #include <Agave/Render/Renderer.h>
@@ -27,7 +28,7 @@ public:
         : Layer("Example")
     {}
 
-    virtual void OnUpdate() override
+    virtual void OnUpdate(Agave::Timestep dt) override
     {
         if(Agave::Input::IsKeyPressed(Agave::KeyCode::Tab))
             AGAVE_TRACE("Tab key is pressed");
@@ -44,9 +45,9 @@ public:
         : Layer("Render")
         , m_camera(-1.6f, 1.6f, -0.9f, 0.9f)
         , m_cameraPosition(m_camera.GetPosition())
-        , m_cameraSpeed(0.1f)
+        , m_cameraSpeed(10.0f)
         , m_cameraRotation(0.0f)
-        , m_cameraRotationSpeed(2.0f)
+        , m_cameraRotationSpeed(180.0f)
     {
         // TRIANGLE
         m_pTriangleVA.reset(Agave::VertexArray::Create());
@@ -167,33 +168,33 @@ public:
         m_pSquareShader.reset(Agave::Shader::Create(vertex2Src, fragment2Src));
     }
 
-    virtual void OnUpdate() override
+    virtual void OnUpdate(Agave::Timestep dt) override
     {
         if (Agave::Input::IsKeyPressed(Agave::KeyCode::LeftArrow))
         {
-            m_cameraPosition.x -= m_cameraSpeed;
+            m_cameraPosition.x -= m_cameraSpeed * dt;
         }
         else if (Agave::Input::IsKeyPressed(Agave::KeyCode::RightArrow))
         {
-            m_cameraPosition.x += m_cameraSpeed;
+            m_cameraPosition.x += m_cameraSpeed * dt;
         }
 
         if (Agave::Input::IsKeyPressed(Agave::KeyCode::UpArrow))
         {
-            m_cameraPosition.y += m_cameraSpeed;
+            m_cameraPosition.y += m_cameraSpeed * dt;
         }
         else if (Agave::Input::IsKeyPressed(Agave::KeyCode::DownArrow))
         {
-            m_cameraPosition.y -= m_cameraSpeed;
+            m_cameraPosition.y -= m_cameraSpeed * dt;
         }
 
         if (Agave::Input::IsKeyPressed(Agave::KeyCode::A))
         {
-            m_cameraRotation += m_cameraRotationSpeed;
+            m_cameraRotation += m_cameraRotationSpeed * dt;
         }
         else if (Agave::Input::IsKeyPressed(Agave::KeyCode::D))
         {
-            m_cameraRotation -= m_cameraRotationSpeed;
+            m_cameraRotation -= m_cameraRotationSpeed * dt;
         }
 
         Agave::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });

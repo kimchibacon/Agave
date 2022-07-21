@@ -14,6 +14,7 @@
 /// Includes
 ///=============================================================================
 #include "Agave/Core/Base.h"
+#include "Agave/Core/Timestep.h"
 #include "Agave/Events/Event.h"
 
 namespace Agave {
@@ -28,7 +29,7 @@ namespace Agave {
 
         virtual void OnAttach() {};
         virtual void OnDetach() {};
-        virtual void OnUpdate() {};
+        virtual void OnUpdate(Timestep dt) {};
         virtual void OnEvent(Event& event) {}
         virtual void OnImGuiRender() {};
 

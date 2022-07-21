@@ -86,11 +86,11 @@ namespace Agave {
 
     ///=========================================================================
     ///=========================================================================
-    void LayerStack::OnUpdate()
+    void LayerStack::OnUpdate(Timestep dt)
     {
         for(Layer* layer : m_layers)
         {
-            layer->OnUpdate();
+            layer->OnUpdate(dt);
         }
     }
 }

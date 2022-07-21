@@ -58,6 +58,7 @@ namespace Agave {
         bool                            m_running;
         LayerStack                      m_layerStack;
         ImGuiLayer*                     m_pImGuiLayer;
+        float                           m_lastFrameTime;
 
         static Application*             ms_pInstance;
     };

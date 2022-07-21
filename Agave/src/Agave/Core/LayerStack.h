@@ -32,7 +32,7 @@ namespace Agave {
         void PopLayer(Layer* layer);
         void PopOverlay(Layer* overlay);
         void OnEvent(Event& event);
-        void OnUpdate();
+        void OnUpdate(Timestep dt);
 
         std::vector<Layer*>::iterator begin() { return m_layers.begin(); }
         std::vector<Layer*>::iterator end() { return m_layers.end(); }

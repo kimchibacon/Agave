@@ -13,8 +13,10 @@
 #include "Agave/Core/Application.h"
 #include "Agave/Core/Delegate.h"
 #include "Agave/Core/Assert.h"
+#include "Agave/Core/Timestep.h"
 #include "Agave/Render/Renderer.h"
-#include <glad/glad.h>
+
+#include <GLFW/glfw3.h>
 
 namespace Agave {
 
@@ -24,6 +26,7 @@ namespace Agave {
     ///=========================================================================
     Application::Application()
         : m_running(true)
+        , m_lastFrameTime(0.0f)
     {
         AGAVE_CORE_ASSERT(ms_pInstance == nullptr);
         ms_pInstance = this;
@@ -49,7 +52,11 @@ namespace Agave {
     {
         while (m_running)
         {
-            m_layerStack.OnUpdate();
+            float time = (float)glfwGetTime();
+            Timestep deltaTime = time - m_lastFrameTime;
+            m_lastFrameTime = time;
+
+            m_layerStack.OnUpdate(deltaTime);
 
             // Render ImGui on all layers
             m_pImGuiLayer->Begin();
